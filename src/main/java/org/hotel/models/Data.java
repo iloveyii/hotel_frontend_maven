@@ -6,6 +6,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Data {
     public ArrayList<Room> rooms = new ArrayList<>();
@@ -27,8 +29,8 @@ public class Data {
         customers.add(c3);
 
         // Fetch rooms from api
-        String newRoom  = "number='1234'&price=99&booked='yes'";
-        String roomsStringAdd = Api.postApiData("rooms", newRoom);
+        Room newRoom  =  new Room(0, "1234", 99.9, "Yes");
+        String roomsStringAdd = Api.postApiData("rooms", newRoom.toJson());
         System.out.println("roomsStringAdd:::" + roomsStringAdd);
         String roomsString = Api.getApiData("rooms");
         if(roomsString.length() > 0) {

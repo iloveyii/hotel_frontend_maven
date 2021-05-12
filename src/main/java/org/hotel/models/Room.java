@@ -1,5 +1,10 @@
 package org.hotel.models;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Room {
     private int id;
     private String number;
@@ -31,5 +36,11 @@ public class Room {
 
     public String getBooked() {
         return booked;
+    }
+
+    public JSONObject toJson() {
+        JSONObject room = new JSONObject();
+        room.put("number", this.number); room.put("price", this.price); room.put("booked", this.booked);
+        return room;
     }
 }

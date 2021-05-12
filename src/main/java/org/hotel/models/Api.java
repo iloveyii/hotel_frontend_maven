@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Api {
@@ -20,19 +21,17 @@ public class Api {
             connection.setRequestMethod(method);
             connection.setDoOutput(true);
             connection.setRequestProperty("User-Agent", "Java client");
-            connection.setRequestProperty("Content-Type", "application/json");
-            // connection.setConnectTimeout(5000);
-            // connection.setReadTimeout(5000);
-            // connection.setRequestProperty("Accept", "application/json");
-            // connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            // connection.setDoOutput(true);
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
         }  catch (
             ConnectException e) {
                 System.out.println("Cannot connect to backend server");
             } catch (MalformedURLException e) {
-                e.printStackTrace();
+                System.out.println("Cannot connect to backend server");
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Cannot connect to backend server");
             } finally {
                 // connection.disconnect();
             }
@@ -85,15 +84,12 @@ public class Api {
     }
 
 
-    public static String postApiData(String endpoint, String data){
+    public static String postApiData(String endpoint, JSONObject data) {
+
         try {
             setConnection("POST", endpoint);
-            JSONObject cred = new JSONObject();
-            cred.put("username","adm");
-            cred.put("password", "pwd");
-
             OutputStream os = connection.getOutputStream();
-            os.write(cred.toString().getBytes("UTF-8"));
+            os.write(data.toString().getBytes("UTF-8"));
 
             StringBuilder content;
 
@@ -117,9 +113,9 @@ public class Api {
             }
 
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            System.out.println("Cannot connect to backend server");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Cannot connect to backend server");
         } finally {
             connection.disconnect();
         }
