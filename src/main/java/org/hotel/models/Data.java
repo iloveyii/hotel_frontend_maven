@@ -1,5 +1,6 @@
 package org.hotel.models;
 
+import javafx.css.Style;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,6 +27,9 @@ public class Data {
         customers.add(c3);
 
         // Fetch rooms from api
+        String newRoom  = "number='1234'&price=99&booked='yes'";
+        String roomsStringAdd = Api.postApiData("rooms", newRoom);
+        System.out.println("roomsStringAdd:::" + roomsStringAdd);
         String roomsString = Api.getApiData("rooms");
         if(roomsString.length() > 0) {
             addToRooms(roomsString);

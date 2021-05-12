@@ -1,7 +1,8 @@
 package org.hotel.models;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import org.json.JSONObject;
+
+import java.io.*;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -10,18 +11,21 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Api {
-    private static String url = "http://localhost:8090/api/v1/";
+    private static String url = "http://localhost:8099/api/v1/";
     private static HttpURLConnection connection = null;
 
     private static void setConnection(String method, String endpoint) {
         try {
             connection = (HttpURLConnection) new URL(url + endpoint).openConnection();
             connection.setRequestMethod(method);
-            connection.setConnectTimeout(5000);
-            connection.setReadTimeout(5000);
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setRequestProperty("Content-Type", "application/json; utf-8");
             connection.setDoOutput(true);
+            connection.setRequestProperty("User-Agent", "Java client");
+            connection.setRequestProperty("Content-Type", "application/json");
+            // connection.setConnectTimeout(5000);
+            // connection.setReadTimeout(5000);
+            // connection.setRequestProperty("Accept", "application/json");
+            // connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            // connection.setDoOutput(true);
         }  catch (
             ConnectException e) {
                 System.out.println("Cannot connect to backend server");
@@ -30,7 +34,7 @@ public class Api {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                connection.disconnect();
+                // connection.disconnect();
             }
     }
 
@@ -43,6 +47,7 @@ public class Api {
                 response += "\n";
             }
             scanner.close();
+            System.out.println("getJsonData " + response);
             return response;
         } catch (ConnectException e) {
             System.out.println("Cannot connect to backend server");
@@ -53,7 +58,7 @@ public class Api {
         } finally {
             connection.disconnect();
         }
-        return null;
+        return "";
     }
 
     public static String getApiData(String endpoint){
@@ -66,6 +71,8 @@ public class Api {
             } else {
                 System.out.println("Status code is other than 200.");
             }
+        } catch (ConnectException e) {
+            System.out.println("Cannot connect to backend server");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -74,30 +81,41 @@ public class Api {
             connection.disconnect();
         }
         // an error happened
-        return null;
+        return "";
     }
 
 
     public static String postApiData(String endpoint, String data){
-        HttpURLConnection connection = null;
         try {
-            setConnection("POST", "logins");
-            String urlParameters  = "username=root@admin.com&password=root123";
-            byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
-            /* try( DataOutputStream wr = new DataOutputStream( connection.getOutputStream())) {
-                wr.write( postData );
-            } */
+            setConnection("POST", endpoint);
+            JSONObject cred = new JSONObject();
+            cred.put("username","adm");
+            cred.put("password", "pwd");
 
-            try(OutputStream os = connection.getOutputStream()) {
-                os.write(postData, 0, postData.length);
+            OutputStream os = connection.getOutputStream();
+            os.write(cred.toString().getBytes("UTF-8"));
+
+            StringBuilder content;
+
+            try (var br = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                String line;
+                content = new StringBuilder();
+                while ((line = br.readLine()) != null) {
+                    content.append(line);
+                    content.append(System.lineSeparator());
+                }
             }
-
+            System.out.println(content.toString());
             int responseCode = connection.getResponseCode();
-            if(responseCode == 200){
-               return  getJsonData();
+            System.out.println("Status code:" + responseCode);
+
+            if(responseCode == 200) {
+                System.out.println("Status code is 200");
+                return content.toString();
             } else {
-                System.out.println("Status code is other than 200.");
+                System.out.println("Status code is other than 200." + responseCode);
             }
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -107,6 +125,6 @@ public class Api {
         }
 
         // an error happened
-        return null;
+        return "";
     }
 }
