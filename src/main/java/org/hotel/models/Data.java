@@ -4,24 +4,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.net.ConnectException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Data {
     public ArrayList<Room> rooms = new ArrayList<>();
     public ArrayList<Customer> customers = new ArrayList<>();
 
     public Data() throws IOException {
-        /* Room r1 = new Room(1, "111", 250, "no");
+        Room r1 = new Room(1, "111", 250, "no");
         Room r2 = new Room(2, "112", 252, "yes");
         Room r3 = new Room(3, "113", 350, "no");
         rooms.add(r1);
         rooms.add(r2);
-        rooms.add(r3); */
+        rooms.add(r3);
 
         Customer c1 = new Customer(1, "111-222-333", "ali1@yahoo.com");
         Customer c2 = new Customer(2, "112-222-333", "ali2@yahoo.com");
@@ -31,12 +26,12 @@ public class Data {
         customers.add(c3);
 
         // Fetch rooms from api
-        String roomsString = getApiData("rooms");
+        String roomsString = Api.getApiData("rooms");
         if(roomsString.length() > 0) {
             addToRooms(roomsString);
         }
         // Fetch customers from api
-        String customersString = getApiData("customers");
+        String customersString = Api.getApiData("customers");
         if(customersString.length() > 0) {
             addToCustomers(customersString);
         }
@@ -55,45 +50,6 @@ public class Data {
             str += String.format("%d, %s, %s \n", c.id, c.phone, c.email);
         }
         return  str;
-    }
-
-    private void api() {
-        // Client client = ClientBuilder.newClient();
-    }
-
-    public String getApiData(String endpoint){
-        HttpURLConnection connection = null;
-        try {
-            connection = (HttpURLConnection) new URL("http://localhost:8090/api/v1/"+endpoint).openConnection();
-            connection.setRequestMethod("GET");
-            connection.setConnectTimeout(5000);
-            connection.setReadTimeout(5000);
-            int responseCode = connection.getResponseCode();
-            if(responseCode == 200){
-                String response = "";
-                Scanner scanner = new Scanner(connection.getInputStream());
-                while(scanner.hasNextLine()){
-                    response += scanner.nextLine();
-                    response += "\n";
-                }
-                scanner.close();
-                return response;
-            } else {
-                System.out.printf("Status code is other than 200 :: %d \n",  responseCode);
-            }
-        }  catch (ConnectException e) {
-            System.out.println("Cannot connect to backend server");
-            return "";
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            connection.disconnect();
-        }
-
-        // an error happened
-        return null;
     }
 
     private void addToRooms(String responseString) {
