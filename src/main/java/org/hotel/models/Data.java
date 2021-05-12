@@ -16,12 +16,12 @@ public class Data {
     public ArrayList<Customer> customers = new ArrayList<>();
 
     public Data() throws IOException {
-        Room r1 = new Room(1, "111", 250, "no");
+        /* Room r1 = new Room(1, "111", 250, "no");
         Room r2 = new Room(2, "112", 252, "yes");
         Room r3 = new Room(3, "113", 350, "no");
         rooms.add(r1);
         rooms.add(r2);
-        rooms.add(r3);
+        rooms.add(r3); */
 
         Customer c1 = new Customer(1, "111-222-333", "ali1@yahoo.com");
         Customer c2 = new Customer(2, "112-222-333", "ali2@yahoo.com");
@@ -46,7 +46,7 @@ public class Data {
         String str = "\nRooms: \n";
         for(int i = 0; i < rooms.size(); i++) {
             Room r = rooms.get(i);
-            str += String.format("%d, %s, %.2f, %s \n", r.id, r.number, r.price, r.booked);
+            str += String.format("%d, %s, %.2f, %s \n", r.getId(), r.getNumber(), r.getPrice(), r.getBooked());
         }
 
         str += "\nCustomers: \n";

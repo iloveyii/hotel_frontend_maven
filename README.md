@@ -39,3 +39,18 @@ In this repo we will explain how to setup simple/fxml (without/with fxml) JavaFx
 - [DOCS](https://openjfx.io/openjfx-docs/), and in the left menu click `JavaFX and IntelliJ` > `Non-modular with Maven`
 - Latest Open JavaFX 17 [link](https://gluonhq.com/products/javafx/)
 - Latest Open JavaFX Maven 0.0.6 Plugin [link](https://mvnrepository.com/artifact/org.openjfx/javafx-maven-plugin/0.0.6)
+
+# Issues
+- Binding observable list to tableview does not show data but error `becuase module does not open org.hotel.models to javafx.base`
+- Solution: the module-info.java should look like:
+```java
+module org.hotel {
+    requires javafx.base;
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires org.json;
+    opens org.hotel to javafx.fxml;
+    opens org.hotel.models to javafx.base;
+    exports org.hotel;
+}
+```

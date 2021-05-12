@@ -23,12 +23,12 @@
       </HBox>
         <Label text="Secondary View" />
         <Button fx:id="secondaryButton" onAction="#switchToPrimary" text="Switch to Primary View" />
-      <TableView prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableRooms" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="75.0" text="Number" />
-            <TableColumn prefWidth="75.0" text="Price" />
-            <TableColumn prefWidth="75.0" text="Booked" />
+            <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="colNumber" prefWidth="75.0" text="Number" />
+            <TableColumn fx:id="colPrice" prefWidth="75.0" text="Price" />
+            <TableColumn fx:id="colBooked" prefWidth="75.0" text="Booked" />
         </columns>
       </TableView>
     </children>
