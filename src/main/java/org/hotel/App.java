@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.hotel.models.Controller;
 import org.hotel.models.Data;
+import org.hotel.models.DataHolder;
 
 import java.io.IOException;
 
@@ -49,6 +51,7 @@ public class App extends Application {
 
     public static void main(String[] args) throws IOException {
         data = new Data();
+        DataHolder.getInstance().setData(data);
         System.out.println(data);
         launch();
     }
