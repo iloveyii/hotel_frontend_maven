@@ -12,6 +12,7 @@ import java.util.Map;
 public class Data {
     public ArrayList<Room> rooms = new ArrayList<>();
     public ArrayList<Customer> customers = new ArrayList<>();
+    public Customer currentCustomer = null;
 
     public Data() throws IOException {
         Room r1 = new Room(1, "111", 250, "no");

@@ -14,3 +14,7 @@
     -fx-cursor: pointer;
     -fx-opacity: 0.5;
 }
+.tableCustomers {
+    -fx-font-family: "Bitstream Charter";
+    -fx-font-size: 14px;
+}

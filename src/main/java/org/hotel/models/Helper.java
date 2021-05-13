@@ -14,4 +14,9 @@ public class Helper {
         }
         return null;
     }
+
+    public static boolean isStatusTrue(String response) {
+        JSONObject respJson = new JSONObject(response);
+        return  (boolean)respJson.get("status");
+    }
 }

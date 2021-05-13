@@ -18,8 +18,15 @@ public class Customer {
 
     public JSONObject toJson() {
         JSONObject customer = new JSONObject();
+        if(id != 0) {
+            customer.put("id", id);
+        }
         customer.put("email", this.email); customer.put("phone", this.phone);
         return customer;
+    }
+
+    public String toString() {
+        return String.format("id:%d, name:%s, phone:%s, email:%s", id, name, phone, email);
     }
 
     public int getId() {

@@ -150,7 +150,7 @@
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
                            <children>
-                              <JFXButton fx:id="btnSave" alignment="CENTER" onAction="#btnSaveClicked" prefHeight="50.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Save" textFill="#f2e6e6">
+                              <JFXButton fx:id="btnSave" alignment="CENTER" onAction="#btnSaveClicked" prefHeight="50.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Save" textFill="#096532">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -158,12 +158,20 @@
                                     <Insets />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton fx:id="btnCancel" alignment="CENTER" contentDisplay="TOP" onAction="#btnCancelClicked" prefHeight="50.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Canel" textFill="#f2e6e6">
+                              <JFXButton fx:id="btnDeleteCustomers" alignment="CENTER" contentDisplay="TOP" onAction="#btnDeleteCustomersClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Delete" textFill="#b21b1b">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="60.0" />
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton fx:id="btnCancelCustomers" alignment="CENTER" contentDisplay="TOP" onAction="#btnCancelCustomersClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Canel" textFill="#4818ae">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
                                  </HBox.margin>
                               </JFXButton>
                            </children>
@@ -184,13 +192,13 @@
          <center>
             <AnchorPane prefHeight="733.0" prefWidth="691.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="tableCustomers" layoutX="20.0" layoutY="102.0" prefHeight="444.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                  <TableView fx:id="tableCustomers" layoutX="20.0" layoutY="102.0" prefHeight="444.0" prefWidth="754.0" styleClass="tableCustomers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
                     <columns>
                       <TableColumn fx:id="colIdCustomers" prefWidth="35.0" text="Id" />
                       <TableColumn fx:id="colNameCustomers" prefWidth="202.0" text="Name" />
                         <TableColumn fx:id="colPhoneCustomers" minWidth="8.0" prefWidth="165.0" text="Phone" />
                         <TableColumn fx:id="colEmailCustomers" minWidth="0.0" prefWidth="207.0" text="Email" />
-                        <TableColumn fx:id="colEmailCustomers1" minWidth="0.0" prefWidth="141.0" text="Action" />
+                        <TableColumn fx:id="colActionCustomers" minWidth="0.0" prefWidth="141.0" text="Action" />
                     </columns>
                   </TableView>
                </children>

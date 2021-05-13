@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.TableRow;
 import javafx.util.Duration;
 import org.hotel.models.*;
 
@@ -63,10 +64,7 @@ public class RoomsController extends Controller implements Initializable {
     private TextField txtPhone;
     @FXML
     private TextField txtEmail;
-    @FXML
-    private JFXButton btnSave;
-    @FXML
-    private JFXButton btnCancel;
+
 
     @FXML
     private void switchToPrimary() throws IOException {
@@ -81,14 +79,36 @@ public class RoomsController extends Controller implements Initializable {
         String name = txtName.getText();
         String phone = txtPhone.getText();
         String email = txtEmail.getText();
-        Customer c = new Customer(0, email, phone);
-        Api.postApiData("customers", c.toJson());
-        DataHolder.getInstance().getData().loadCustomersData();
-        showTableCustomers();
+        int id = DataHolder.getInstance().getData().currentCustomer == null ? 0 : DataHolder.getInstance().getData().currentCustomer.getId();
+        Customer c = new Customer(id, phone, email);
+        System.out.print("Saving customer :::");
+        System.out.println(c);
+        System.out.println(c.toJson());
+        System.out.println(c);
+        if( Helper.isStatusTrue(Api.postApiData("customers", c.toJson())) ){
+            clearCustomerForm();
+            DataHolder.getInstance().getData().loadCustomersData();
+            showTableCustomers();
+        }
     }
 
     @FXML
-    private void btnCancelClicked() throws IOException {
+    private void btnCancelCustomersClicked() throws IOException {
+        clearCustomerForm();
+    }
+
+    @FXML
+    private void btnDeleteCustomersClicked() throws IOException {
+        Integer id = DataHolder.getInstance().getData().currentCustomer == null ? null : DataHolder.getInstance().getData().currentCustomer.getId();
+        if( id != null && Helper.isStatusTrue(Api.deleteApiData("customers", id)) ){
+            clearCustomerForm();
+            DataHolder.getInstance().getData().loadCustomersData();
+            showTableCustomers();
+        }
+    }
+
+    private void clearCustomerForm() {
+        DataHolder.getInstance().getData().currentCustomer = null;
         txtName.setText("");
         txtPhone.setText("");
         txtEmail.setText("");
@@ -97,7 +117,9 @@ public class RoomsController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // showTable(); // @TODO uncomment
+        setTableCustomersRowClickListener();
         showTableCustomers();
+
         btnClose.setOnMouseClicked(event -> {
             System.exit(0);
         });
@@ -160,5 +182,22 @@ public class RoomsController extends Controller implements Initializable {
             customers.add(data.customers.get(i));
         }
         tableCustomers.setItems(customers);
+    }
+
+    private void setTableCustomersRowClickListener() {
+        tableCustomers.setRowFactory(tv -> {
+            TableRow<Customer> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (! row.isEmpty() ) {
+                    Customer rowData = row.getItem();
+                    System.out.println("Double click on: "+rowData);
+                    DataHolder.getInstance().getData().currentCustomer = rowData;
+                    txtName.setText(rowData.getName());
+                    txtPhone.setText(rowData.getPhone());
+                    txtEmail.setText(rowData.getEmail());
+                }
+            });
+            return row ;
+        });
     }
 }
