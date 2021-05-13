@@ -9,7 +9,7 @@ public class Room {
     private double price;
     private String booked;
 
-    Room(int id, String number, double price, String booked) {
+    public Room(int id, String number, double price, String booked) {
         this.id = id;
         this.number = number;
         this.price = price;
@@ -38,6 +38,9 @@ public class Room {
 
     public JSONObject toJson() {
         JSONObject room = new JSONObject();
+        if(id != 0) {
+            room.put("id", id);
+        }
         room.put("number", this.number); room.put("price", this.price); room.put("booked", this.booked);
         return room;
     }

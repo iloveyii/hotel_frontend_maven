@@ -30,18 +30,6 @@ public class RoomsController extends Controller implements Initializable {
     @FXML
     private TableColumn<Room, String> colBooked;
 
-    // Table Customers
-    @FXML
-    private TableView<Customer> tableCustomers;
-    @FXML
-    private TableColumn<Customer, Integer> colIdCustomers;
-    @FXML
-    private TableColumn<Customer, String> colNameCustomers;
-    @FXML
-    private TableColumn<Customer, String> colPhoneCustomers;
-    @FXML
-    private TableColumn<Customer, String> colEmailCustomers;
-
     // Dashboard
     @FXML
     private ImageView btnClose;
@@ -55,11 +43,11 @@ public class RoomsController extends Controller implements Initializable {
     private AnchorPane acrTable;
     // Customer Form
     @FXML
-    private TextField txtName;
+    private TextField txtNumber;
     @FXML
-    private TextField txtPhone;
+    private TextField txtPrice;
     @FXML
-    private TextField txtEmail;
+    private TextField txtBooked;
 
 
     @FXML
@@ -85,48 +73,47 @@ public class RoomsController extends Controller implements Initializable {
 
     @FXML
     private void btnSaveClicked() throws IOException {
-        String name = txtName.getText();
-        String phone = txtPhone.getText();
-        String email = txtEmail.getText();
-        int id = DataHolder.getInstance().getData().currentCustomer == null ? 0 : DataHolder.getInstance().getData().currentCustomer.getId();
-        Customer c = new Customer(id, phone, email);
+        String number = txtNumber.getText();
+        Double price = Double.valueOf(txtPrice.getText());
+        String booked = txtBooked.getText();
+        int id = DataHolder.getInstance().getData().currentRoom == null ? 0 : DataHolder.getInstance().getData().currentRoom.getId();
+        Room c = new Room(id, number, price, booked);
         System.out.print("Saving customer :::");
         System.out.println(c);
         System.out.println(c.toJson());
         System.out.println(c);
-        if( Helper.isStatusTrue(Api.postApiData("customers", c.toJson())) ){
-            clearCustomerForm();
-            DataHolder.getInstance().getData().loadCustomersData();
+        if( Helper.isStatusTrue(Api.postApiData("rooms", c.toJson())) ){
+            clearRoomForm();
+            DataHolder.getInstance().getData().loadRoomsData();
             showTableRooms();
         }
     }
 
     @FXML
-    private void btnCancelCustomersClicked() throws IOException {
-        clearCustomerForm();
+    private void btnCancelRoomsClicked() throws IOException {
+        clearRoomForm();
     }
 
     @FXML
-    private void btnDeleteCustomersClicked() throws IOException {
-        Integer id = DataHolder.getInstance().getData().currentCustomer == null ? null : DataHolder.getInstance().getData().currentCustomer.getId();
-        if( id != null && Helper.isStatusTrue(Api.deleteApiData("customers", id)) ){
-            clearCustomerForm();
-            DataHolder.getInstance().getData().loadCustomersData();
+    private void btnDeleteRoomsClicked() throws IOException {
+        Integer id = DataHolder.getInstance().getData().currentRoom == null ? null : DataHolder.getInstance().getData().currentRoom.getId();
+        if( id != null && Helper.isStatusTrue(Api.deleteApiData("rooms", id)) ){
+            clearRoomForm();
+            DataHolder.getInstance().getData().loadRoomsData();
             showTableRooms();
         }
     }
 
-    private void clearCustomerForm() {
-        DataHolder.getInstance().getData().currentCustomer = null;
-        txtName.setText("");
-        txtPhone.setText("");
-        txtEmail.setText("");
+    private void clearRoomForm() {
+        DataHolder.getInstance().getData().currentRoom = null;
+        txtNumber.setText("");
+        txtPrice.setText("");
+        txtBooked.setText("");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // showTable(); // @TODO uncomment
-        // setTableCustomersRowClickListener();
+        setTableRoomsRowClickListener();
         showTableRooms();
 
         btnClose.setOnMouseClicked(event -> {
@@ -144,7 +131,7 @@ public class RoomsController extends Controller implements Initializable {
             slide.setNode(sdrLeft); slideAnchor.setNode(acrTable);
             slide.setToX(0); slideAnchor.setToX(0);
             slide.play(); slideAnchor.play();
-            sdrLeft.setTranslateX(-400); acrTable.setTranslateX(400); acrTable.setMinWidth(691); tableCustomers.setPrefWidth(600);
+            sdrLeft.setTranslateX(-400); acrTable.setTranslateX(400); acrTable.setMinWidth(691); tableRooms.setPrefWidth(600);
 
             slide.setOnFinished((ActionEvent e)-> {
                 mnuShow.setVisible(false);
@@ -158,7 +145,7 @@ public class RoomsController extends Controller implements Initializable {
             slide.setNode(sdrLeft); slideAnchor.setNode(acrTable);
             slide.setToX(-400);  slideAnchor.setToX(-400);
             slide.play(); slideAnchor.play();
-            sdrLeft.setTranslateX(0); acrTable.setTranslateX(-400); acrTable.setMinWidth(1195); tableCustomers.setPrefWidth(800);
+            sdrLeft.setTranslateX(0); acrTable.setTranslateX(-400); acrTable.setMinWidth(1195); tableRooms.setPrefWidth(800);
 
             slide.setOnFinished((ActionEvent e)-> {
                 mnuShow.setVisible(true);
@@ -182,32 +169,17 @@ public class RoomsController extends Controller implements Initializable {
         tableRooms.setItems(rooms);
     }
 
-    private void showTableCustomers2() {
-        System.out.println("RoomsController showTable Customers");
-        ObservableList<Customer> customers = FXCollections.observableArrayList();
-        colIdCustomers.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("id"));
-        colNameCustomers.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
-        colPhoneCustomers.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
-        colEmailCustomers.setCellValueFactory(new PropertyValueFactory<Customer, String>("email"));
-
-        for(int i=0; i < data.customers.size(); i++) {
-            System.out.println("Customers:::" + data.customers.get(i));
-            customers.add(data.customers.get(i));
-        }
-        tableCustomers.setItems(customers);
-    }
-
-    private void setTableCustomersRowClickListener() {
-        tableCustomers.setRowFactory(tv -> {
-            TableRow<Customer> row = new TableRow<>();
+    private void setTableRoomsRowClickListener() {
+        tableRooms.setRowFactory(tv -> {
+            TableRow<Room> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (! row.isEmpty() ) {
-                    Customer rowData = row.getItem();
+                    Room rowData = row.getItem();
                     System.out.println("Double click on: "+rowData);
-                    DataHolder.getInstance().getData().currentCustomer = rowData;
-                    txtName.setText(rowData.getName());
-                    txtPhone.setText(rowData.getPhone());
-                    txtEmail.setText(rowData.getEmail());
+                    DataHolder.getInstance().getData().currentRoom = rowData;
+                    txtNumber.setText(rowData.getNumber());
+                    txtPrice.setText(String.valueOf(rowData.getPrice()));
+                    txtBooked.setText(rowData.getBooked());
                 }
             });
             return row ;
