@@ -41,7 +41,7 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.4</version>
+                <version>0.0.6</version>
                 <configuration>
                     <mainClass>org.hotel.App</mainClass>
                 </configuration>

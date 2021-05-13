@@ -30,6 +30,11 @@ In this repo we will explain how to setup simple/fxml (without/with fxml) JavaFx
 - Expand `Before lanuch` and click + and select `Run Maven Goal` and type `javafx:run` in the Command line, and click Ok.
 - In the window also type `javafx:run` in the command line, click apply, ok.
 - Now you will see Run button along with play button in the toolbar.
+## Using Maven
+- `mvn clean javafx:run`
+
+# Distribution builds
+- [Build](https://github.com/dlemmermann/JPackageScriptFX)
 
 ## Verify
 - Simple: You can expand the External Libraries in the left pane of IntelliJ and notice that it has `javafx-base/controls/graphics` jar files downloaded.
@@ -53,4 +58,16 @@ module org.hotel {
     opens org.hotel.models to javafx.base;
     exports org.hotel;
 }
+```
+- WARNING: Illegal reflective access by com.google.inject.internal.cglib.core
+- Solution:
+```bash
+  # Download maven 3.6.3
+  wget https://www-us.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -P /tmp
+  # Untar downloaded file to /opt
+  sudo tar xf /tmp/apache-maven-*.tar.gz -C /opt
+  # Install the alternative version for the mvn in your system
+  sudo update-alternatives --install /usr/bin/mvn mvn /opt/apache-maven-3.6.3/bin/mvn 363
+  # Check if your configuration is ok. You may use your current or the 3.6.3 whenever you wish, running the command below.
+  sudo update-alternatives --config mvn
 ```

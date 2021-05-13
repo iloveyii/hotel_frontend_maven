@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Api {
-    private static String url = "http://localhost:8099/api/v1/";
+    private static String url = "http://localhost:8090/api/v1/";
     private static HttpURLConnection connection = null;
 
     private static void setConnection(String method, String endpoint) {
