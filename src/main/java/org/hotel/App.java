@@ -2,8 +2,10 @@ package org.hotel;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.hotel.models.Data;
 import org.hotel.models.DataHolder;
@@ -19,6 +21,7 @@ public class App extends Application {
     private static Scene scene;
     private static Stage primaryStage;
     private static Data data;
+    public static double x,y = 0;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -45,11 +48,22 @@ public class App extends Application {
         }
         // scene.setFill(null);
         scene.setRoot(loadFXML(fxml));
+        centralizeStageOnScreen();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+        Parent root = fxmlLoader.load();
+        root.setOnMousePressed(event -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+
+        root.setOnMouseDragged(event -> {
+            primaryStage.setX(event.getScreenX() - x);
+            primaryStage.setY(event.getScreenY() - y);
+        });
+        return root;
     }
 
     public static void main(String[] args) throws IOException {
@@ -57,6 +71,12 @@ public class App extends Application {
         DataHolder.getInstance().setData(data);
         System.out.println(data);
         launch();
+    }
+
+    private static void centralizeStageOnScreen() {
+        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+        primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+        primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
     }
 
 }
