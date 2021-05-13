@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.RoomsController">
+   <children>
+      <BorderPane layoutX="128.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="236.0" layoutY="-67.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #23045a;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                     <children>
+                        <JFXButton prefHeight="43.0" prefWidth="136.0">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/user.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton prefHeight="43.0" prefWidth="136.0">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/customer.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton prefHeight="43.0" prefWidth="136.0">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/single-bed.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton prefHeight="43.0" prefWidth="136.0">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/hotel3.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton prefHeight="43.0" prefWidth="136.0">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/logout.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children></HBox>
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutX="126.0" layoutY="89.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #23045a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                     <children>
+                        <JFXButton prefHeight="50.0" prefWidth="400.0" style="-fx-font-weight: bold;" textFill="#f2e6e6">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton prefHeight="50.0" prefWidth="400.0" style="-fx-font-weight: bold;" textFill="#f2e6e6">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton prefHeight="50.0" prefWidth="400.0" style="-fx-font-weight: bold;" textFill="#f2e6e6">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton prefHeight="50.0" prefWidth="400.0" style="-fx-font-weight: bold;" textFill="#f2e6e6">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton prefHeight="50.0" prefWidth="400.0" style="-fx-font-weight: bold;" textFill="#f2e6e6">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="10.0" layoutY="210.0" prefHeight="50.0" prefWidth="400.0" style="-fx-font-weight: bold;" textFill="#f2e6e6">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </JFXButton>
+                     </children></VBox>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

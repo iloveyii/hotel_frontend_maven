@@ -40,7 +40,11 @@ public class RoomsController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("RoomsController initialized");
+        // showTable(); // @TODO uncomment
+    }
+
+    private void showTable() {
+        System.out.println("RoomsController showTable");
         ObservableList<Room> rooms = FXCollections.observableArrayList();
         colId.setCellValueFactory(new PropertyValueFactory<Room, Integer>("id"));
         colNumber.setCellValueFactory(new PropertyValueFactory<Room, String>("number"));
