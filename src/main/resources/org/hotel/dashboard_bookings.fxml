@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.RoomsController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.CustomersController">
    <children>
       <BorderPane layoutX="128.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -32,7 +32,7 @@
                      </children></Pane>
                   <HBox prefHeight="85.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                      <children>
-                        <JFXButton alignment="CENTER" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="USERS">
+                        <JFXButton fx:id="toolBtnUsers" alignment="CENTER" onAction="#switchToDashboardUsers" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="USERS">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -41,7 +41,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="CUSTOMERS">
+                        <JFXButton onAction="#switchToDashboardCustomers" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="CUSTOMERS">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -59,7 +59,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="BOOKINGS">
+                        <JFXButton onAction="#switchToDashboardBookings" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="BOOKINGS">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -68,7 +68,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="LOGOUT">
+                        <JFXButton onAction="#switchToPrimary" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="LOGOUT">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

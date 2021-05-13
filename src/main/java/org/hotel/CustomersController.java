@@ -1,23 +1,29 @@
 package org.hotel;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import com.jfoenix.controls.JFXButton;
 import javafx.animation.TranslateTransition;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.TableRow;
 import javafx.util.Duration;
 import org.hotel.models.*;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class RoomsController extends Controller implements Initializable {
+public class CustomersController extends Controller implements Initializable {
 
     @FXML
     private TableView<Room> tableRooms;
@@ -97,7 +103,7 @@ public class RoomsController extends Controller implements Initializable {
         if( Helper.isStatusTrue(Api.postApiData("customers", c.toJson())) ){
             clearCustomerForm();
             DataHolder.getInstance().getData().loadCustomersData();
-            showTableRooms();
+            showTableCustomers();
         }
     }
 
@@ -112,7 +118,7 @@ public class RoomsController extends Controller implements Initializable {
         if( id != null && Helper.isStatusTrue(Api.deleteApiData("customers", id)) ){
             clearCustomerForm();
             DataHolder.getInstance().getData().loadCustomersData();
-            showTableRooms();
+            showTableCustomers();
         }
     }
 
@@ -126,8 +132,8 @@ public class RoomsController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // showTable(); // @TODO uncomment
-        // setTableCustomersRowClickListener();
-        showTableRooms();
+        setTableCustomersRowClickListener();
+        showTableCustomers();
 
         btnClose.setOnMouseClicked(event -> {
             System.exit(0);
@@ -182,7 +188,7 @@ public class RoomsController extends Controller implements Initializable {
         tableRooms.setItems(rooms);
     }
 
-    private void showTableCustomers2() {
+    private void showTableCustomers() {
         System.out.println("RoomsController showTable Customers");
         ObservableList<Customer> customers = FXCollections.observableArrayList();
         colIdCustomers.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("id"));

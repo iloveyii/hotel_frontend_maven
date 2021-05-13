@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.RoomsController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.CustomersController">
    <children>
       <BorderPane layoutX="128.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -240,12 +240,12 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <TableView fx:id="tableRooms" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="tableCustomers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                  <TableView fx:id="tableCustomers" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="tableCustomers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
                     <columns>
-                      <TableColumn fx:id="colId" prefWidth="35.0" text="Id" />
-                      <TableColumn fx:id="colNumber" prefWidth="202.0" text="Number" />
-                        <TableColumn fx:id="colPrice" minWidth="8.0" prefWidth="165.0" text="Price" />
-                        <TableColumn fx:id="colBooked" minWidth="0.0" prefWidth="207.0" text="Booked" />
+                      <TableColumn fx:id="colIdCustomers" prefWidth="35.0" text="Id" />
+                      <TableColumn fx:id="colNameCustomers" prefWidth="202.0" text="Name" />
+                        <TableColumn fx:id="colPhoneCustomers" minWidth="8.0" prefWidth="165.0" text="Phone" />
+                        <TableColumn fx:id="colEmailCustomers" minWidth="0.0" prefWidth="207.0" text="Email" />
                         <TableColumn fx:id="colActionCustomers" minWidth="0.0" prefWidth="141.0" text="Action" />
                     </columns>
                   </TableView>

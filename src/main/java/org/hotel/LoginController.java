@@ -18,7 +18,7 @@ public class LoginController extends Controller {
 
     @FXML
     private void btnLoginClick() throws IOException {
-        App.setRoot("dashboard"); // @TODO remove
+        App.setRoot("dashboard_rooms"); // @TODO remove
         String email = txtEmail.getText();
         String password = txtPassword.getText();
 
