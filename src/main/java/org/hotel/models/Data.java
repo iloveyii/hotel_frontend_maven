@@ -21,25 +21,35 @@ public class Data {
         rooms.add(r2);
         rooms.add(r3);
 
-        Customer c1 = new Customer(1, "111-222-333", "ali1@yahoo.com");
+        /*Customer c1 = new Customer(1, "111-222-333", "ali1@yahoo.com");
         Customer c2 = new Customer(2, "112-222-333", "ali2@yahoo.com");
         Customer c3 = new Customer(3, "113-222-333", "ali3@yahoo.com");
         customers.add(c1);
         customers.add(c2);
-        customers.add(c3);
+        customers.add(c3);*/
 
         // Fetch rooms from api
 
         /*Room newRoom  =  new Room(0, "1234", 99.9, "Yes");
         String roomsStringAdd = Api.postApiData("rooms", newRoom.toJson());
         System.out.println("roomsStringAdd:::" + roomsStringAdd); */
+        loadRoomsData();
+        loadCustomersData();
+    }
+
+    public void loadRoomsData() {
         String roomsString = Api.getApiData("rooms");
         if(roomsString.length() > 0) {
+            rooms.clear();
             addToRooms(roomsString);
         }
+    }
+
+    public void loadCustomersData() {
         // Fetch customers from api
         String customersString = Api.getApiData("customers");
         if(customersString.length() > 0) {
+            customers.clear();
             addToCustomers(customersString);
         }
     }
@@ -54,7 +64,7 @@ public class Data {
         str += "\nCustomers: \n";
         for(int i = 0; i < customers.size(); i++) {
             Customer c = customers.get(i);
-            str += String.format("%d, %s, %s \n", c.id, c.phone, c.email);
+            str += String.format("%d, %s, %s \n", c.getId(), c.getPhone(), c.getEmail());
         }
         return  str;
     }

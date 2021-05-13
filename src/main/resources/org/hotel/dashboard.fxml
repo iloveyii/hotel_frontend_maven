@@ -3,6 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -27,7 +29,7 @@
                            </image>
                         </ImageView>
                      </children></Pane>
-                  <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                  <HBox prefHeight="140.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                      <children>
                         <JFXButton prefHeight="43.0" prefWidth="136.0" styleClass="menuItem" text="USERS">
                            <graphic>
@@ -176,8 +178,23 @@
                </children>
             </AnchorPane>
          </left>
+         <right>
+            <AnchorPane prefHeight="200.0" prefWidth="20.0" BorderPane.alignment="CENTER" />
+         </right>
          <center>
-            <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+            <AnchorPane prefHeight="733.0" prefWidth="691.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tableCustomers" layoutX="20.0" layoutY="102.0" prefHeight="444.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                    <columns>
+                      <TableColumn fx:id="colIdCustomers" prefWidth="35.0" text="Id" />
+                      <TableColumn fx:id="colNameCustomers" prefWidth="202.0" text="Name" />
+                        <TableColumn fx:id="colPhoneCustomers" minWidth="8.0" prefWidth="165.0" text="Phone" />
+                        <TableColumn fx:id="colEmailCustomers" minWidth="0.0" prefWidth="207.0" text="Email" />
+                        <TableColumn fx:id="colEmailCustomers1" minWidth="0.0" prefWidth="141.0" text="Action" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
          </center>
       </BorderPane>
    </children>

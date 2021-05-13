@@ -35,6 +35,18 @@ public class RoomsController extends Controller implements Initializable {
     @FXML
     private TableColumn<Room, String> colBooked;
 
+    // Table Customers
+    @FXML
+    private TableView<Customer> tableCustomers;
+    @FXML
+    private TableColumn<Customer, Integer> colIdCustomers;
+    @FXML
+    private TableColumn<Customer, String> colNameCustomers;
+    @FXML
+    private TableColumn<Customer, String> colPhoneCustomers;
+    @FXML
+    private TableColumn<Customer, String> colEmailCustomers;
+
     // Dashboard
     @FXML
     private ImageView btnClose;
@@ -58,8 +70,6 @@ public class RoomsController extends Controller implements Initializable {
 
     @FXML
     private void switchToPrimary() throws IOException {
-
-
         // Data data = DataHolder.getInstance().getData();
         System.out.println("Sharing data");
         System.out.println(data);
@@ -73,6 +83,8 @@ public class RoomsController extends Controller implements Initializable {
         String email = txtEmail.getText();
         Customer c = new Customer(0, email, phone);
         Api.postApiData("customers", c.toJson());
+        DataHolder.getInstance().getData().loadCustomersData();
+        showTableCustomers();
     }
 
     @FXML
@@ -85,11 +97,12 @@ public class RoomsController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // showTable(); // @TODO uncomment
+        showTableCustomers();
         btnClose.setOnMouseClicked(event -> {
             System.exit(0);
         });
 
-        sdrLeft.setTranslateX(-400);
+        sdrLeft.setTranslateX(0);
         mnuShow.setOnMouseClicked(event -> {
             TranslateTransition slide = new TranslateTransition();
             slide.setDuration(Duration.seconds(0.4));
@@ -119,7 +132,7 @@ public class RoomsController extends Controller implements Initializable {
         });
     }
 
-    private void showTable() {
+    private void showTableRooms() {
         System.out.println("RoomsController showTable");
         ObservableList<Room> rooms = FXCollections.observableArrayList();
         colId.setCellValueFactory(new PropertyValueFactory<Room, Integer>("id"));
@@ -132,5 +145,20 @@ public class RoomsController extends Controller implements Initializable {
             rooms.add(data.rooms.get(i));
         }
         tableRooms.setItems(rooms);
+    }
+
+    private void showTableCustomers() {
+        System.out.println("RoomsController showTable Customers");
+        ObservableList<Customer> customers = FXCollections.observableArrayList();
+        colIdCustomers.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("id"));
+        colNameCustomers.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
+        colPhoneCustomers.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
+        colEmailCustomers.setCellValueFactory(new PropertyValueFactory<Customer, String>("email"));
+
+        for(int i=0; i < data.customers.size(); i++) {
+            System.out.println("Customers:::" + data.customers.get(i));
+            customers.add(data.customers.get(i));
+        }
+        tableCustomers.setItems(customers);
     }
 }
