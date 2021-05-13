@@ -49,6 +49,14 @@
          <font>
             <Font size="16.0" />
          </font></Button>
+      <Label fx:id="lblError" prefHeight="16.0" prefWidth="629.0" textFill="#e41010">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </Label>
    </children>
    <padding>
       <Insets bottom="20.0" left="0.0" right="0.0" top="-80.0" />

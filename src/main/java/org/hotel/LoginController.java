@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.hotel.models.*;
 import org.json.JSONObject;
@@ -12,6 +13,7 @@ import org.json.JSONObject;
 public class LoginController extends Controller {
     public TextField txtEmail;
     public TextField txtPassword;
+    public Label lblError;
 
     @FXML
     private void switchToSecondary() throws IOException {
@@ -24,20 +26,20 @@ public class LoginController extends Controller {
         String password = txtPassword.getText();
 
         if(isEmailValid(email) && password.length() > 0) {
-            System.out.println("Email is valid and password > 0");
-
+            lblError.setText("");
             User user  =  new User(0, email, password);
             String response = Api.postApiData("logins", user.toJson());
             JSONObject responseObject = Helper.toJsonObject(response);
-            System.out.println("btnLoginClick:::" + response);
-            System.out.println((boolean)responseObject.get("status") == true);
-            if((boolean)responseObject.get("status") == true) {
+            if((boolean) responseObject.get("status")) {
+                lblError.setText("");
                 App.setRoot("rooms");
             } else {
-                System.out.println((boolean)responseObject.get("status") == true);
+                System.out.println("Email or password incorrect");
+                lblError.setText("Email or password incorrect");
             }
         } else {
             System.out.println("Email is NOT valid OR password <> 0");
+            lblError.setText("Email is not valid or password is empty");
         }
     }
 
