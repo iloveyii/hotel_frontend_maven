@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -105,37 +107,72 @@
                <children>
                   <VBox layoutX="126.0" layoutY="89.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #23045a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
                      <children>
-                        <JFXButton prefHeight="50.0" prefWidth="400.0" style="-fx-font-weight: bold;" textFill="#f2e6e6">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton prefHeight="50.0" prefWidth="400.0" style="-fx-font-weight: bold;" textFill="#f2e6e6">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton prefHeight="50.0" prefWidth="400.0" style="-fx-font-weight: bold;" textFill="#f2e6e6">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton prefHeight="50.0" prefWidth="400.0" style="-fx-font-weight: bold;" textFill="#f2e6e6">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton prefHeight="50.0" prefWidth="400.0" style="-fx-font-weight: bold;" textFill="#f2e6e6">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton layoutX="10.0" layoutY="210.0" prefHeight="50.0" prefWidth="400.0" style="-fx-font-weight: bold;" textFill="#f2e6e6">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </JFXButton>
-                     </children></VBox>
+                        <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
+                           <children>
+                              <TextField fx:id="txtName" prefHeight="50.0" prefWidth="360.0" promptText="Name">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="60.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
+                           <children>
+                              <TextField fx:id="txtPhone" prefHeight="50.0" prefWidth="360.0" promptText="Phone">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="40.0" />
+                           </VBox.margin>
+                           <children>
+                              <TextField fx:id="txtEmail" prefHeight="50.0" prefWidth="360.0" promptText="Email">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
+                           <children>
+                              <JFXButton fx:id="btnSave" alignment="CENTER" onAction="#btnSaveClicked" prefHeight="50.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Save" textFill="#f2e6e6">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton fx:id="btnCancel" alignment="CENTER" contentDisplay="TOP" onAction="#btnCancelClicked" prefHeight="50.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Canel" textFill="#f2e6e6">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="60.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding></VBox>
                </children>
             </AnchorPane>
          </left>

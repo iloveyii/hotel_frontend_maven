@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.animation.TranslateTransition;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -14,14 +15,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
-import org.hotel.models.Controller;
-import org.hotel.models.Data;
-import org.hotel.models.DataHolder;
-import org.hotel.models.Room;
+import org.hotel.models.*;
 
 public class RoomsController extends Controller implements Initializable {
 
@@ -45,13 +44,42 @@ public class RoomsController extends Controller implements Initializable {
     private Label mnuShow;
     @FXML
     private AnchorPane sdrLeft;
+    // Customer Form
+    @FXML
+    private TextField txtName;
+    @FXML
+    private TextField txtPhone;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private JFXButton btnSave;
+    @FXML
+    private JFXButton btnCancel;
 
     @FXML
     private void switchToPrimary() throws IOException {
+
+
         // Data data = DataHolder.getInstance().getData();
         System.out.println("Sharing data");
         System.out.println(data);
         App.setRoot("primary");
+    }
+
+    @FXML
+    private void btnSaveClicked() throws IOException {
+        String name = txtName.getText();
+        String phone = txtPhone.getText();
+        String email = txtEmail.getText();
+        Customer c = new Customer(0, email, phone);
+        Api.postApiData("customers", c.toJson());
+    }
+
+    @FXML
+    private void btnCancelClicked() throws IOException {
+        txtName.setText("");
+        txtPhone.setText("");
+        txtEmail.setText("");
     }
 
     @Override
