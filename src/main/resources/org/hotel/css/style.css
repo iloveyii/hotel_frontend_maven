@@ -4,6 +4,10 @@
     -fx-cursor: pointer;
     -fx-opacity: 0.5;
 }
+.menuItem{
+    -fx-border-color: transparent;
+    -fx-border-width: 0px 0px 3px 0px;
+}
 
 .sdrMenuItem:hover{
     -fx-cursor: pointer;

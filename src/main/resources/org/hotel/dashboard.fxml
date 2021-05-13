@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,7 +20,7 @@
    <children>
       <BorderPane layoutX="128.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <AnchorPane prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="85.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
                <children>
                   <Pane layoutX="236.0" layoutY="-67.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -29,9 +30,9 @@
                            </image>
                         </ImageView>
                      </children></Pane>
-                  <HBox prefHeight="140.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                  <HBox prefHeight="85.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                      <children>
-                        <JFXButton prefHeight="43.0" prefWidth="136.0" styleClass="menuItem" text="USERS">
+                        <JFXButton alignment="CENTER" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="USERS">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -40,7 +41,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="43.0" prefWidth="136.0" styleClass="menuItem" text="CUSTOMERS">
+                        <JFXButton prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="CUSTOMERS">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -49,7 +50,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="43.0" prefWidth="136.0" styleClass="menuItem" text="ROOMS">
+                        <JFXButton prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="ROOMS">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -58,7 +59,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="43.0" prefWidth="136.0" styleClass="menuItem" text="BOOKINGS">
+                        <JFXButton prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="BOOKINGS">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -67,7 +68,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="43.0" prefWidth="136.0" styleClass="menuItem" text="LOGOUT">
+                        <JFXButton prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="LOGOUT">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -76,8 +77,11 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                     </children></HBox>
-                  <Label fx:id="mnuHide" layoutX="14.0" layoutY="42.0" styleClass="sdrMenuItem" text="MENU">
+                     </children>
+                     <effect>
+                        <Bloom />
+                     </effect></HBox>
+                  <Label fx:id="mnuHide" layoutX="14.0" layoutY="50.0" styleClass="sdrMenuItem" text="MENU">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -89,7 +93,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="mnuShow" layoutX="14.0" layoutY="42.0" styleClass="sdrMenuItem" text="MENU">
+                  <Label fx:id="mnuShow" layoutX="14.0" layoutY="50.0" styleClass="sdrMenuItem" text="MENU">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -190,9 +194,9 @@
             <AnchorPane prefHeight="200.0" prefWidth="20.0" BorderPane.alignment="CENTER" />
          </right>
          <center>
-            <AnchorPane prefHeight="733.0" prefWidth="691.0" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="acrTable" prefHeight="733.0" prefWidth="691.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="tableCustomers" layoutX="20.0" layoutY="102.0" prefHeight="444.0" prefWidth="754.0" styleClass="tableCustomers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                  <TableView fx:id="tableCustomers" layoutX="20.0" layoutY="102.0" prefHeight="444.0" prefWidth="754.0" style="-fx-background-color: orange;" styleClass="tableCustomers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
                     <columns>
                       <TableColumn fx:id="colIdCustomers" prefWidth="35.0" text="Id" />
                       <TableColumn fx:id="colNameCustomers" prefWidth="202.0" text="Name" />

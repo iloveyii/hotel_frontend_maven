@@ -57,6 +57,8 @@ public class RoomsController extends Controller implements Initializable {
     private Label mnuShow;
     @FXML
     private AnchorPane sdrLeft;
+    @FXML
+    private AnchorPane acrTable;
     // Customer Form
     @FXML
     private TextField txtName;
@@ -123,15 +125,19 @@ public class RoomsController extends Controller implements Initializable {
         btnClose.setOnMouseClicked(event -> {
             System.exit(0);
         });
+        setSliding();
+    }
 
+    private void setSliding() {
+        mnuShow.setVisible(false);
         sdrLeft.setTranslateX(0);
         mnuShow.setOnMouseClicked(event -> {
-            TranslateTransition slide = new TranslateTransition();
-            slide.setDuration(Duration.seconds(0.4));
-            slide.setNode(sdrLeft);
-            slide.setToX(0);
-            slide.play();
-            sdrLeft.setTranslateX(-400);
+            TranslateTransition slide = new TranslateTransition(); TranslateTransition slideAnchor = new TranslateTransition();
+            slide.setDuration(Duration.seconds(0.4)); slideAnchor.setDuration(Duration.seconds(0.4));
+            slide.setNode(sdrLeft); slideAnchor.setNode(acrTable);
+            slide.setToX(0); slideAnchor.setToX(0);
+            slide.play(); slideAnchor.play();
+            sdrLeft.setTranslateX(-400); acrTable.setTranslateX(400); acrTable.setMinWidth(691); tableCustomers.setPrefWidth(600);
 
             slide.setOnFinished((ActionEvent e)-> {
                 mnuShow.setVisible(false);
@@ -140,12 +146,12 @@ public class RoomsController extends Controller implements Initializable {
         });
 
         mnuHide.setOnMouseClicked(event -> {
-            TranslateTransition slide = new TranslateTransition();
-            slide.setDuration(Duration.seconds(0.4));
-            slide.setNode(sdrLeft);
-            slide.setToX(-400);
-            slide.play();
-            sdrLeft.setTranslateX(0);
+            TranslateTransition slide = new TranslateTransition();  TranslateTransition slideAnchor = new TranslateTransition();
+            slide.setDuration(Duration.seconds(0.4)); slideAnchor.setDuration(Duration.seconds(0.4));
+            slide.setNode(sdrLeft); slideAnchor.setNode(acrTable);
+            slide.setToX(-400);  slideAnchor.setToX(-400);
+            slide.play(); slideAnchor.play();
+            sdrLeft.setTranslateX(0); acrTable.setTranslateX(-400); acrTable.setMinWidth(1195); tableCustomers.setPrefWidth(800);
 
             slide.setOnFinished((ActionEvent e)-> {
                 mnuShow.setVisible(true);
