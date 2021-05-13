@@ -83,7 +83,7 @@
                      </effect></HBox>
                   <Label fx:id="mnuHide" layoutX="14.0" layoutY="50.0" styleClass="sdrMenuItem" text="MENU">
                      <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: pointer;">
                            <image>
                               <Image url="@images/menu-hide.png" />
                            </image>
@@ -111,6 +111,23 @@
          <left>
             <AnchorPane fx:id="sdrLeft" prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
                <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2d0439;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/tv.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <JFXButton alignment="BASELINE_LEFT" prefWidth="400.0" text=" Hotel Booking" textFill="#e1cbcb">
+                           <font>
+                              <Font name="Noto Mono" size="20.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
                   <VBox layoutX="126.0" layoutY="89.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #23045a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
                      <children>
                         <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
@@ -170,7 +187,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton fx:id="btnCancelCustomers" alignment="CENTER" contentDisplay="TOP" onAction="#btnCancelCustomersClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Canel" textFill="#4818ae">
+                              <JFXButton fx:id="btnCancelCustomers" alignment="CENTER" contentDisplay="TOP" onAction="#btnCancelCustomersClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Canel" textFill="#2d0439">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -194,9 +211,36 @@
             <AnchorPane prefHeight="200.0" prefWidth="20.0" BorderPane.alignment="CENTER" />
          </right>
          <center>
-            <AnchorPane fx:id="acrTable" prefHeight="733.0" prefWidth="691.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="acrTable" prefHeight="700.0" prefWidth="691.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="tableCustomers" layoutX="20.0" layoutY="102.0" prefHeight="444.0" prefWidth="754.0" style="-fx-background-color: orange;" styleClass="tableCustomers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                  <HBox layoutY="-23.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0">
+                     <children>
+                        <TextField prefHeight="43.0" prefWidth="500.0" promptText="Search">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="150.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <JFXButton prefHeight="43.0" prefWidth="130.0" style="-fx-background-color: gray;" text="Search">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/search.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tableCustomers" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="tableCustomers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
                     <columns>
                       <TableColumn fx:id="colIdCustomers" prefWidth="35.0" text="Id" />
                       <TableColumn fx:id="colNameCustomers" prefWidth="202.0" text="Name" />
