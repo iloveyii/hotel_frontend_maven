@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,7 +17,14 @@
          <top>
             <AnchorPane prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
                <children>
-                  <Pane layoutX="236.0" layoutY="-67.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #23045a;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Pane layoutX="236.0" layoutY="-67.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #23045a;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fx:id="btnClose" fitHeight="22.0" fitWidth="22.0" layoutX="1167.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/close.png" />
+                           </image>
+                        </ImageView>
+                     </children></Pane>
                   <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                      <children>
                         <JFXButton prefHeight="43.0" prefWidth="136.0">
@@ -65,11 +73,35 @@
                            </graphic>
                         </JFXButton>
                      </children></HBox>
+                  <Label fx:id="mnuBack" layoutX="14.0" layoutY="37.0" text="MENU">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/menu.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mnuShow" layoutX="14.0" layoutY="36.0" text="MENU">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/menu.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </top>
          <left>
-            <AnchorPane prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="sdrLeft" prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
                <children>
                   <VBox layoutX="126.0" layoutY="89.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #23045a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
                      <children>
