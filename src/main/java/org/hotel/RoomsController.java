@@ -77,6 +77,14 @@ public class RoomsController extends Controller implements Initializable {
     }
 
     @FXML
+    private void switchToDashboardRooms() throws IOException {
+        // Data data = DataHolder.getInstance().getData();
+        System.out.println("Sharing data");
+        System.out.println(data);
+        App.setRoot("dashboard_rooms");
+    }
+
+    @FXML
     private void btnSaveClicked() throws IOException {
         String name = txtName.getText();
         String phone = txtPhone.getText();
