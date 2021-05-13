@@ -39,16 +39,20 @@ public class App extends Application {
             primaryStage.setMaximized(false);
             primaryStage.setResizable(false);
             System.out.println("Primary");
+            // scene.setFill(null);
+            scene.setRoot(loadFXML(fxml));
+            centralizeStageOnScreen(640, 480);
         } else {
             primaryStage.setWidth(1200);
             primaryStage.setHeight(800);
             primaryStage.setMaximized(true);
             primaryStage.setResizable(true);
             System.out.println("Other");
+            // scene.setFill(null);
+            scene.setRoot(loadFXML(fxml));
+            centralizeStageOnScreen(1200, 800);
         }
-        // scene.setFill(null);
-        scene.setRoot(loadFXML(fxml));
-        centralizeStageOnScreen();
+
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
@@ -73,10 +77,10 @@ public class App extends Application {
         launch();
     }
 
-    private static void centralizeStageOnScreen() {
+    private static void centralizeStageOnScreen(int w, int h) {
         Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-        primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
-        primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
+        primaryStage.setX((primScreenBounds.getWidth() - w) / 2);
+        primaryStage.setY((primScreenBounds.getHeight() - h) / 2);
     }
 
 }
