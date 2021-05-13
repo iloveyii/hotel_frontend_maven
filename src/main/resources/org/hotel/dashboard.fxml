@@ -11,23 +11,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.RoomsController">
+<AnchorPane stylesheets="@css/style.css" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.RoomsController">
    <children>
       <BorderPane layoutX="128.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <AnchorPane prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
                <children>
-                  <Pane layoutX="236.0" layoutY="-67.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #23045a;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Pane layoutX="236.0" layoutY="-67.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ImageView fx:id="btnClose" fitHeight="22.0" fitWidth="22.0" layoutX="1167.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="btnClose" fitHeight="22.0" fitWidth="22.0" layoutX="1164.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" styleClass="menuClose">
                            <image>
                               <Image url="@images/close.png" />
                            </image>
                         </ImageView>
                      </children></Pane>
-                  <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                  <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                      <children>
-                        <JFXButton prefHeight="43.0" prefWidth="136.0">
+                        <JFXButton prefHeight="43.0" prefWidth="136.0" styleClass="menuItem">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -36,7 +36,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="43.0" prefWidth="136.0">
+                        <JFXButton prefHeight="43.0" prefWidth="136.0" styleClass="menuItem">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -45,7 +45,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="43.0" prefWidth="136.0">
+                        <JFXButton prefHeight="43.0" prefWidth="136.0" styleClass="menuItem">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -54,7 +54,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="43.0" prefWidth="136.0">
+                        <JFXButton prefHeight="43.0" prefWidth="136.0" styleClass="menuItem">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -63,7 +63,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton prefHeight="43.0" prefWidth="136.0">
+                        <JFXButton prefHeight="43.0" prefWidth="136.0" styleClass="menuItem">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -73,11 +73,11 @@
                            </graphic>
                         </JFXButton>
                      </children></HBox>
-                  <Label fx:id="mnuBack" layoutX="14.0" layoutY="37.0" text="MENU">
+                  <Label fx:id="mnuHide" layoutX="14.0" layoutY="42.0" text="MENU" styleClass="sdrMenuItem">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/menu.png" />
+                              <Image url="@images/menu-hide.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -85,7 +85,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="mnuShow" layoutX="14.0" layoutY="36.0" text="MENU">
+                  <Label fx:id="mnuShow" layoutX="14.0" layoutY="42.0" text="MENU" styleClass="sdrMenuItem">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>

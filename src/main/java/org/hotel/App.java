@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.hotel.models.Data;
 import org.hotel.models.DataHolder;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -23,6 +24,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 640, 480);
         primaryStage = stage;
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }
@@ -35,6 +37,8 @@ public class App extends Application {
             primaryStage.setResizable(false);
             System.out.println("Primary");
         } else {
+            primaryStage.setWidth(1200);
+            primaryStage.setHeight(800);
             primaryStage.setMaximized(true);
             primaryStage.setResizable(true);
             System.out.println("Other");

@@ -40,7 +40,7 @@ public class RoomsController extends Controller implements Initializable {
     @FXML
     private ImageView btnClose;
     @FXML
-    private Label mnuBack;
+    private Label mnuHide;
     @FXML
     private Label mnuShow;
     @FXML
@@ -72,21 +72,21 @@ public class RoomsController extends Controller implements Initializable {
 
             slide.setOnFinished((ActionEvent e)-> {
                 mnuShow.setVisible(false);
-                mnuBack.setVisible(true);
+                mnuHide.setVisible(true);
             });
         });
 
-        mnuBack.setOnMouseClicked(event -> {
+        mnuHide.setOnMouseClicked(event -> {
             TranslateTransition slide = new TranslateTransition();
             slide.setDuration(Duration.seconds(0.4));
             slide.setNode(sdrLeft);
-            slide.setToX(0);
+            slide.setToX(-400);
             slide.play();
             sdrLeft.setTranslateX(0);
 
             slide.setOnFinished((ActionEvent e)-> {
                 mnuShow.setVisible(true);
-                mnuBack.setVisible(false);
+                mnuHide.setVisible(false);
             });
         });
     }

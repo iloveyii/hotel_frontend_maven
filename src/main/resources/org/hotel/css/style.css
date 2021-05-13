@@ -1,0 +1,16 @@
+.menuItem:hover{
+    -fx-border-color: #0c2f74;
+    -fx-border-width: 0px 0px 3px 0px;
+    -fx-cursor: pointer;
+    -fx-opacity: 0.5;
+}
+
+.sdrMenuItem:hover{
+    -fx-cursor: pointer;
+    -fx-opacity: 0.5;
+}
+
+.menuClose:hover{
+    -fx-cursor: pointer;
+    -fx-opacity: 0.5;
+}
