@@ -29,9 +29,10 @@ public class Data {
         customers.add(c3);
 
         // Fetch rooms from api
-        Room newRoom  =  new Room(0, "1234", 99.9, "Yes");
+
+        /*Room newRoom  =  new Room(0, "1234", 99.9, "Yes");
         String roomsStringAdd = Api.postApiData("rooms", newRoom.toJson());
-        System.out.println("roomsStringAdd:::" + roomsStringAdd);
+        System.out.println("roomsStringAdd:::" + roomsStringAdd); */
         String roomsString = Api.getApiData("rooms");
         if(roomsString.length() > 0) {
             addToRooms(roomsString);

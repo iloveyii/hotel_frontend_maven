@@ -2,8 +2,6 @@ package org.hotel.models;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Room {
     private int id;

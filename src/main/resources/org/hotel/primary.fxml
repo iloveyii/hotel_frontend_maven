@@ -8,6 +8,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.LoginController">
@@ -21,13 +23,29 @@
             </ImageView>
          </children>
       </HBox>
-      <Label text="Email" />
-      <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="292.0" promptText="Email">
+      <Label style="-fx-font-weight: bold;" text="Login">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#6082c6" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill></Label>
+      <TextField fx:id="txtEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="292.0" promptText="Email">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Button fx:id="primaryButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#switchToSecondary" prefHeight="48.0" prefWidth="135.0" text="Login">
+      <TextField fx:id="txtPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="292.0" promptText="Password">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Button fx:id="primaryButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#btnLoginClick" prefHeight="48.0" prefWidth="135.0" text="Login">
          <font>
             <Font size="16.0" />
          </font></Button>
