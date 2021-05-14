@@ -13,9 +13,11 @@ public class Data {
     public ArrayList<Room> rooms = new ArrayList<>();
     public ArrayList<User> users = new ArrayList<>();
     public ArrayList<Customer> customers = new ArrayList<>();
+    public ArrayList<Booking> bookings = new ArrayList<>();
     public Customer currentCustomer = null;
     public Room currentRoom = null;
     public User currentUser = null;
+    public Booking currentBooking = null;
 
     public Data() throws IOException {
         Room r1 = new Room(1, "111", 250, "no");
@@ -38,8 +40,18 @@ public class Data {
         String roomsStringAdd = Api.postApiData("rooms", newRoom.toJson());
         System.out.println("roomsStringAdd:::" + roomsStringAdd); */
         loadRoomsData();
+        loadBookingsData();
         loadCustomersData();
         loadUsersData();
+    }
+
+    public void loadBookingsData() {
+        Booking b1 = new Booking(1, "0111", 3201.5, "Ali1", "ali1@email.com", "2021-05-11");
+        Booking b2 = new Booking(2, "0211", 3202.5, "Ali2", "ali2@email.com", "2021-05-12");
+        Booking b3 = new Booking(3, "0311", 3203.5, "Ali3", "ali3@email.com", "2021-05-13");
+        bookings.add(b1);
+        bookings.add(b2);
+        bookings.add(b3);
     }
 
     public void loadRoomsData() {
@@ -59,7 +71,6 @@ public class Data {
     }
 
     public void loadCustomersData() {
-        // Fetch customers from api
         String customersString = Api.getApiData("customers");
         if(customersString.length() > 0) {
             customers.clear();

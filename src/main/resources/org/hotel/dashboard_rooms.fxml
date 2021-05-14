@@ -240,7 +240,7 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <TableView fx:id="tableRooms" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="tableRooms" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                  <TableView fx:id="tableRooms" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="table" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
                     <columns>
                       <TableColumn fx:id="colId" prefWidth="35.0" text="Id" />
                       <TableColumn fx:id="colNumber" prefWidth="202.0" text="Number" />

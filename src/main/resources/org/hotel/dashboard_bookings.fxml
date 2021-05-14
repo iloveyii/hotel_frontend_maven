@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.CustomersController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.BookingsController">
    <children>
       <BorderPane layoutX="128.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -132,7 +132,7 @@
                      <children>
                         <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
                            <children>
-                              <TextField fx:id="txtName" prefHeight="50.0" prefWidth="360.0" promptText="Name">
+                              <TextField fx:id="txtRoomNumber" prefHeight="50.0" prefWidth="360.0" promptText="Room number">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -147,7 +147,7 @@
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
                            <children>
-                              <TextField fx:id="txtPhone" prefHeight="50.0" prefWidth="360.0" promptText="Phone">
+                              <TextField fx:id="txtPrice" prefHeight="50.0" prefWidth="360.0" promptText="Price">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -159,15 +159,45 @@
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
                            <VBox.margin>
-                              <Insets bottom="20.0" top="40.0" />
+                              <Insets top="40.0" />
                            </VBox.margin>
                            <children>
-                              <TextField fx:id="txtEmail" prefHeight="50.0" prefWidth="360.0" promptText="Email">
+                              <TextField fx:id="txtCustomerName" prefHeight="50.0" prefWidth="360.0" promptText="Customer name">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
                            </children>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
+                           <children>
+                              <TextField fx:id="txtCustomerEmail" prefHeight="50.0" prefWidth="360.0" promptText="Customer email">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
+                           <children>
+                              <TextField fx:id="txtDatetime" prefHeight="50.0" prefWidth="360.0" promptText="Date">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
                            <children>
@@ -179,7 +209,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton fx:id="btnDeleteCustomers" alignment="CENTER" contentDisplay="TOP" onAction="#btnDeleteCustomersClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Delete" textFill="#b21b1b">
+                              <JFXButton fx:id="btnDeleteBookings" alignment="CENTER" contentDisplay="TOP" onAction="#btnDeleteBookingsClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Delete" textFill="#b21b1b">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -187,7 +217,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton fx:id="btnCancelCustomers" alignment="CENTER" contentDisplay="TOP" onAction="#btnCancelCustomersClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Canel" textFill="#2d0439">
+                              <JFXButton fx:id="btnCancelBookings" alignment="CENTER" contentDisplay="TOP" onAction="#btnCancelBookingsClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Canel" textFill="#2d0439">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -197,7 +227,7 @@
                               </JFXButton>
                            </children>
                            <VBox.margin>
-                              <Insets top="40.0" />
+                              <Insets top="60.0" />
                            </VBox.margin>
                         </HBox>
                      </children>
@@ -240,13 +270,15 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <TableView fx:id="tableCustomers" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="tableCustomers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                  <TableView fx:id="tableBookings" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="table" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
                     <columns>
-                      <TableColumn fx:id="colIdCustomers" prefWidth="35.0" text="Id" />
-                      <TableColumn fx:id="colNameCustomers" prefWidth="202.0" text="Name" />
-                        <TableColumn fx:id="colPhoneCustomers" minWidth="8.0" prefWidth="165.0" text="Phone" />
-                        <TableColumn fx:id="colEmailCustomers" minWidth="0.0" prefWidth="207.0" text="Email" />
-                        <TableColumn fx:id="colActionCustomers" minWidth="0.0" prefWidth="141.0" text="Action" />
+                      <TableColumn fx:id="colId" prefWidth="35.0" text="Id" />
+                      <TableColumn fx:id="colRoomNumber" prefWidth="84.0" text="Room No" />
+                        <TableColumn fx:id="colPrice" minWidth="8.0" prefWidth="87.0" text="Price" />
+                        <TableColumn fx:id="colCustomerName" minWidth="0.0" prefWidth="155.0" text="Customer Name" />
+                        <TableColumn fx:id="colCustomerEmail" minWidth="0.0" prefWidth="203.0" text="Customer Email" />
+                        <TableColumn fx:id="colDatetime" minWidth="0.0" prefWidth="123.0" text="Date" />
+                        <TableColumn fx:id="colActionBookings" minWidth="0.0" prefWidth="87.0" text="Action" />
                     </columns>
                   </TableView>
                </children>
