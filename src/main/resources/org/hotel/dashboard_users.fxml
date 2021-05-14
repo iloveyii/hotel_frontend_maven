@@ -121,10 +121,13 @@
                               <Insets left="20.0" top="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <JFXButton alignment="BASELINE_LEFT" prefWidth="400.0" text=" Hotel Booking" textFill="#e1cbcb">
+                        <JFXButton alignment="BASELINE_LEFT" prefWidth="400.0" text="USERS" textFill="#e1cbcb">
                            <font>
                               <Font name="Noto Mono" size="20.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
                         </JFXButton>
                      </children>
                   </HBox>
