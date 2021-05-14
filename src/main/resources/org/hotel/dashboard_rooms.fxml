@@ -203,6 +203,21 @@
                               <Insets top="40.0" />
                            </VBox.margin>
                         </HBox>
+                        <HBox prefHeight="50.0" prefWidth="360.0" style="-fx-background-color: black;">
+                           <children>
+                              <JFXButton fx:id="btnBook" alignment="CENTER" onAction="#btnBookClicked" prefHeight="50.0" prefWidth="360.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Book" textFill="#096532">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
                      </children>
                      <padding>
                         <Insets left="20.0" right="20.0" />

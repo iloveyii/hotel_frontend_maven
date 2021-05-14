@@ -1,15 +1,20 @@
 package org.hotel;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.hotel.models.*;
 
@@ -41,6 +46,8 @@ public class RoomsController extends Controller implements Initializable {
     private AnchorPane sdrLeft;
     @FXML
     private AnchorPane acrTable;
+    @FXML
+    private JFXButton btnBook;
     // Customer Form
     @FXML
     private TextField txtNumber;
@@ -49,6 +56,15 @@ public class RoomsController extends Controller implements Initializable {
     @FXML
     private TextField txtBooked;
 
+    @FXML
+    private void btnBookClicked() throws IOException {
+        Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        Parent root = App.loadFXML("dialog");
+        Scene scene = new Scene(root);
+        dialog.setScene(scene);
+        dialog.showAndWait();
+    }
 
     @FXML
     private void switchToPrimary() throws IOException {
