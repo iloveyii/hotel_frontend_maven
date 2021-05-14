@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.CustomersController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.UsersController">
    <children>
       <BorderPane layoutX="128.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -41,7 +41,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton onAction="#switchToDashboardCustomers" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="CUSTOMERS">
+                        <JFXButton onAction="#switchToDashboardUsers" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="CUSTOMERS">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -132,7 +132,7 @@
                      <children>
                         <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
                            <children>
-                              <TextField fx:id="txtName" prefHeight="50.0" prefWidth="360.0" promptText="Name">
+                              <TextField fx:id="txtEmail" prefHeight="50.0" prefWidth="360.0" promptText="Email">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -147,7 +147,7 @@
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
                            <children>
-                              <TextField fx:id="txtPhone" prefHeight="50.0" prefWidth="360.0" promptText="Phone">
+                              <TextField fx:id="txtPassword" prefHeight="50.0" prefWidth="360.0" promptText="Password">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -156,18 +156,6 @@
                            <VBox.margin>
                               <Insets top="40.0" />
                            </VBox.margin>
-                        </HBox>
-                        <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
-                           <VBox.margin>
-                              <Insets bottom="20.0" top="40.0" />
-                           </VBox.margin>
-                           <children>
-                              <TextField fx:id="txtEmail" prefHeight="50.0" prefWidth="360.0" promptText="Email">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </TextField>
-                           </children>
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
                            <children>
@@ -179,7 +167,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton fx:id="btnDeleteCustomers" alignment="CENTER" contentDisplay="TOP" onAction="#btnDeleteCustomersClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Delete" textFill="#b21b1b">
+                              <JFXButton fx:id="btnDeleteUsers" alignment="CENTER" contentDisplay="TOP" onAction="#btnDeleteUsersClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Delete" textFill="#b21b1b">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -187,7 +175,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton fx:id="btnCancelCustomers" alignment="CENTER" contentDisplay="TOP" onAction="#btnCancelCustomersClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Canel" textFill="#2d0439">
+                              <JFXButton fx:id="btnCancelUsers" alignment="CENTER" contentDisplay="TOP" onAction="#btnCancelUsersClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Canel" textFill="#2d0439">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -240,13 +228,13 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <TableView fx:id="tableCustomers" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="tableCustomers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                  <TableView fx:id="tableUsers" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="tableUsers" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
                     <columns>
-                      <TableColumn fx:id="colIdCustomers" prefWidth="35.0" text="Id" />
-                      <TableColumn fx:id="colNameCustomers" prefWidth="202.0" text="Name" />
-                        <TableColumn fx:id="colPhoneCustomers" minWidth="8.0" prefWidth="165.0" text="Phone" />
-                        <TableColumn fx:id="colEmailCustomers" minWidth="0.0" prefWidth="207.0" text="Email" />
-                        <TableColumn fx:id="colActionCustomers" minWidth="0.0" prefWidth="141.0" text="Action" />
+                      <TableColumn fx:id="colId" prefWidth="35.0" text="Id" />
+                      <TableColumn fx:id="colEmail" prefWidth="202.0" text="Name" />
+                        <TableColumn fx:id="colEmail" minWidth="8.0" prefWidth="165.0" text="Email" />
+                        <TableColumn fx:id="colPassword" minWidth="0.0" prefWidth="207.0" text="Password" />
+                        <TableColumn fx:id="colActionUsers" minWidth="0.0" prefWidth="141.0" text="Action" />
                     </columns>
                   </TableView>
                </children>

@@ -11,9 +11,11 @@ import java.util.Map;
 
 public class Data {
     public ArrayList<Room> rooms = new ArrayList<>();
+    public ArrayList<User> users = new ArrayList<>();
     public ArrayList<Customer> customers = new ArrayList<>();
     public Customer currentCustomer = null;
     public Room currentRoom = null;
+    public User currentUser = null;
 
     public Data() throws IOException {
         Room r1 = new Room(1, "111", 250, "no");
@@ -37,6 +39,7 @@ public class Data {
         System.out.println("roomsStringAdd:::" + roomsStringAdd); */
         loadRoomsData();
         loadCustomersData();
+        loadUsersData();
     }
 
     public void loadRoomsData() {
@@ -44,6 +47,14 @@ public class Data {
         if(roomsString.length() > 0) {
             rooms.clear();
             addToRooms(roomsString);
+        }
+    }
+
+    public void loadUsersData() {
+        String usersString = Api.getApiData("users");
+        if(usersString.length() > 0) {
+            users.clear();
+            addToUsers(usersString);
         }
     }
 
@@ -113,4 +124,26 @@ public class Data {
             System.out.println("Response status / success is false from endpoint /customers");
         }
     }
+
+    private void addToUsers(String responseString) {
+        JSONObject response = new JSONObject(responseString);
+        boolean success = (boolean) response.getBoolean("success");
+
+        if(success == true) {
+            JSONArray _users = new JSONArray(response.getJSONArray("data"));
+            int id; String email; String password;
+            for(int i=0; i < _users.length(); i++) {
+                JSONObject user = _users.getJSONObject(i);
+                id = (int) user.getInt("id");
+                email = (String) user.getString("email");
+                password = user.getString("password");
+                User u = new User(id, email, password);
+                System.out.println(u);
+                users.add(u);
+            }
+        } else {
+            System.out.println("Response status from endpoint /users is false");
+        }
+    }
+
 }

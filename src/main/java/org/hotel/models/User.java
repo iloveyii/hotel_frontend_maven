@@ -31,6 +31,9 @@ public class User {
 
     public JSONObject toJson() {
         JSONObject user = new JSONObject();
+        if(id != 0) {
+            user.put("id", id);
+        }
         user.put("email", this.email); user.put("password", this.password);
         return user;
     }
