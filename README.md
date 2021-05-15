@@ -1,6 +1,8 @@
 JavaFx Project using Maven
 ==========================
+This is a demo app for hotel booking build in Java, JavaFx, Fxml, H2 Database, Tomcat.
 In this repo we will explain how to setup simple/fxml (without/with fxml) JavaFx application using IntelliJ.
+![demo](https://raw.githubusercontent.com/iloveyii/hotel_frontend_maven/master/src/main/resources/org/hotel/images/demo.gif)
 
 # Configuration
 - Open IntelliJ > New > Project
