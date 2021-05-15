@@ -46,10 +46,26 @@
             <Font size="15.0" />
          </font>
       </PasswordField>
-      <Button fx:id="primaryButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#btnLoginClick" prefHeight="43.0" prefWidth="135.0" text="Login">
-         <font>
-            <Font size="16.0" />
-         </font></Button>
+      <HBox prefHeight="43.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btnClose" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#btnCloseClick" prefHeight="43.0" prefWidth="135.0" text="Close">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="primaryButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#btnLoginClick" prefHeight="43.0" prefWidth="135.0" text="Login">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets left="177.0" right="175.0" />
+         </padding>
+      </HBox>
       <Label fx:id="lblError" prefHeight="16.0" prefWidth="629.0" textFill="#e41010">
          <font>
             <Font size="14.0" />

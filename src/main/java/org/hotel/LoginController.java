@@ -13,6 +13,10 @@ public class LoginController extends Controller {
     public TextField txtPassword;
     public Label lblError;
 
+    @FXML
+    private void btnCloseClick() throws IOException {
+        System.exit(0);
+    }
 
     @FXML
     private void btnLoginClick() throws IOException {
