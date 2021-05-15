@@ -3,24 +3,18 @@ package org.hotel;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.hotel.models.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class DialogController extends Controller implements Initializable  {
-    @FXML
-    private JFXButton btnSave;
     @FXML
     private JFXButton btnCancel;
 
@@ -53,6 +47,13 @@ public class DialogController extends Controller implements Initializable  {
             lblError.setText("Please select a room  first");
             return;
         }
+
+        if(DataHolder.getInstance().getData().currentRoom.isBooked()) {
+            System.out.println("This room is already booked, un-book it first.");
+            lblError.setText("This room is already booked, un-book it first.");
+            return;
+        }
+
         String room_number = DataHolder.getInstance().getData().currentRoom.getNumber();
         Double price = DataHolder.getInstance().getData().currentRoom.getPrice();
         if(! Helper.isEmailValid(email) || name.length() == 0 || phone.length() == 0 || email.length() == 0 || datetime == null) {
@@ -67,6 +68,7 @@ public class DialogController extends Controller implements Initializable  {
         if(Helper.isStatusTrue(response)) {
             lblError.setText("Saved successfully.");
             lblError.setStyle("-fx-background-color: green");
+            DataHolder.getInstance().getData().loadBookingsData();
             clearForm();
         }
     }
@@ -86,7 +88,7 @@ public class DialogController extends Controller implements Initializable  {
         if(r == null) {
             lblError.setText("Please select a room first");
         } else {
-            if(r.getBooked().toLowerCase().equals("yes")) {
+            if(r.isBooked()) {
                 lblError.setText("This room is already booked, un-book it first.");
             }
             lblRoomNumber.setText(r.getNumber());

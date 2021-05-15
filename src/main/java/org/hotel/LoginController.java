@@ -24,7 +24,7 @@ public class LoginController extends Controller {
 
         if(Helper.isEmailValid(email) && password.length() > 0) {
             lblError.setText("");
-            User user  =  new User(0, email, password);
+            User user  =  new User(0, "", email, password);
             String response = Api.postApiData("logins", user.toJson());
             JSONObject responseObject = Helper.toJsonObject(response);
 
@@ -39,7 +39,4 @@ public class LoginController extends Controller {
             lblError.setText("Email is not valid or password is empty");
         }
     }
-
-
-
 }

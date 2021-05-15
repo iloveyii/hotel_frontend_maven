@@ -9,11 +9,11 @@ public class Customer {
     private String email;
     private String phone;
 
-    public Customer(int id, String email, String phone) {
+    public Customer(int id, String name, String phone, String email) {
         this.id = id;
-        this.name = "abc";
-        this.email = email;
+        this.name = name;
         this.phone = phone;
+        this.email = email;
     }
 
     public JSONObject toJson() {
@@ -21,7 +21,7 @@ public class Customer {
         if(id != 0) {
             customer.put("id", id);
         }
-        customer.put("email", this.email); customer.put("phone", this.phone);
+        customer.put("name", this.name); customer.put("phone", this.phone); customer.put("email", this.email);
         return customer;
     }
 

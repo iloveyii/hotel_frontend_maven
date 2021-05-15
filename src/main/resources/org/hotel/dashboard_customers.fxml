@@ -253,6 +253,9 @@
                     </columns>
                   </TableView>
                </children>
+               <BorderPane.margin>
+                  <Insets left="10.0" />
+               </BorderPane.margin>
             </AnchorPane>
          </center>
       </BorderPane>

@@ -26,6 +26,8 @@ public class UsersController extends Controller implements Initializable {
     @FXML
     private TableColumn<User, String> colEmail;
     @FXML
+    private TableColumn<User, String> colName;
+    @FXML
     private TableColumn<User, String> colPassword;
 
     // Dashboard
@@ -44,6 +46,8 @@ public class UsersController extends Controller implements Initializable {
     private TextField txtEmail;
     @FXML
     private TextField txtPassword;
+    @FXML
+    private TextField txtName;
     
 
     @FXML
@@ -69,10 +73,11 @@ public class UsersController extends Controller implements Initializable {
 
     @FXML
     private void btnSaveClicked() throws IOException {
+        String name = txtName.getText();
         String email = txtEmail.getText();
         String password = txtPassword.getText();
         int id = DataHolder.getInstance().getData().currentUser == null ? 0 : DataHolder.getInstance().getData().currentUser.getId();
-        User c = new User(id, email, password);
+        User c = new User(id, name, email, password);
         System.out.print("Saving customer :::");
         System.out.println(c);
         System.out.println(c.toJson());
@@ -101,6 +106,7 @@ public class UsersController extends Controller implements Initializable {
 
     private void clearUserForm() {
         DataHolder.getInstance().getData().currentUser = null;
+        txtName.setText("");
         txtEmail.setText("");
         txtPassword.setText("");
     }
@@ -152,6 +158,7 @@ public class UsersController extends Controller implements Initializable {
         System.out.println("UsersController showTable");
         ObservableList<User> users = FXCollections.observableArrayList();
         colId.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         colEmail.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
         colPassword.setCellValueFactory(new PropertyValueFactory<User, String>("password"));
 
@@ -170,6 +177,7 @@ public class UsersController extends Controller implements Initializable {
                     User rowData = row.getItem();
                     System.out.println("Double click on: "+rowData);
                     DataHolder.getInstance().getData().currentUser = rowData;
+                    txtName.setText(rowData.getName());
                     txtEmail.setText(rowData.getEmail());
                     txtPassword.setText(rowData.getPassword());
                 }

@@ -95,7 +95,7 @@ public class CustomersController extends Controller implements Initializable {
         String phone = txtPhone.getText();
         String email = txtEmail.getText();
         int id = DataHolder.getInstance().getData().currentCustomer == null ? 0 : DataHolder.getInstance().getData().currentCustomer.getId();
-        Customer c = new Customer(id, phone, email);
+        Customer c = new Customer(id, name, phone, email);
         System.out.print("Saving customer :::");
         System.out.println(c);
         System.out.println(c.toJson());

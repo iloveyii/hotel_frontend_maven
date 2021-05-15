@@ -2,6 +2,8 @@ package org.hotel.models;
 
 import org.json.JSONObject;
 
+import java.util.Locale;
+
 
 public class Room {
     private int id;
@@ -18,6 +20,11 @@ public class Room {
 
     public String toString() {
         return String.format("%d, %s, %.2f, %s", id, number, price, booked);
+    }
+
+    public boolean isBooked() {
+        System.out.printf("isBooked : %s", booked.toLowerCase());
+        return booked.toLowerCase().equals("yes");
     }
 
     public int getId() {

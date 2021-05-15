@@ -145,13 +145,14 @@ public class Data {
 
         if(success == true) {
             JSONArray _customers = new JSONArray(response.getJSONArray("data"));
-            int id; String phone; String email;
+            int id; String name, phone, email;
             for(int i=0; i < _customers.length(); i++) {
                 JSONObject room = _customers.getJSONObject(i);
                 id = (int) room.getInt("id");
+                name = (String) room.getString("name");
                 phone = (String) room.getString("phone");
                 email = room.getString("email");
-                Customer c = new Customer(id, phone, email);
+                Customer c = new Customer(id, name, phone, email);
                 System.out.println(c);
                 customers.add(c);
             }
@@ -166,13 +167,14 @@ public class Data {
 
         if(success == true) {
             JSONArray _users = new JSONArray(response.getJSONArray("data"));
-            int id; String email; String password;
+            int id; String name, email, password;
             for(int i=0; i < _users.length(); i++) {
                 JSONObject user = _users.getJSONObject(i);
                 id = (int) user.getInt("id");
+                name = (String) user.getString("name");
                 email = (String) user.getString("email");
                 password = user.getString("password");
-                User u = new User(id, email, password);
+                User u = new User(id, name, email, password);
                 System.out.println(u);
                 users.add(u);
             }
