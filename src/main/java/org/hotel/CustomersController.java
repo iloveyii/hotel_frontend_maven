@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.animation.TranslateTransition;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,27 +65,6 @@ public class CustomersController extends Controller implements Initializable {
     @FXML
     private TextField txtEmail;
 
-
-    @FXML
-    private void switchToPrimary() throws IOException {
-        App.setRoot("primary");
-    }
-    @FXML
-    private void switchToDashboardUsers() throws IOException {
-        App.setRoot("dashboard_users");
-    }
-    @FXML
-    private void switchToDashboardCustomers() throws IOException {
-        App.setRoot("dashboard_customers");
-    }
-    @FXML
-    private void switchToDashboardRooms() throws IOException {
-        App.setRoot("dashboard_rooms");
-    }
-    @FXML
-    private void switchToDashboardBookings() throws IOException {
-        App.setRoot("dashboard_bookings");
-    }
 
     @FXML
     private void btnSaveClicked() throws IOException {

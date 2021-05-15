@@ -1,8 +1,6 @@
 package org.hotel;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

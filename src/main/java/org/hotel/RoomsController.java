@@ -67,27 +67,6 @@ public class RoomsController extends Controller implements Initializable {
     }
 
     @FXML
-    private void switchToPrimary() throws IOException {
-        App.setRoot("primary");
-    }
-    @FXML
-    private void switchToDashboardUsers() throws IOException {
-        App.setRoot("dashboard_users");
-    }
-    @FXML
-    private void switchToDashboardCustomers() throws IOException {
-        App.setRoot("dashboard_customers");
-    }
-    @FXML
-    private void switchToDashboardRooms() throws IOException {
-        App.setRoot("dashboard_rooms");
-    }
-    @FXML
-    private void switchToDashboardBookings() throws IOException {
-        App.setRoot("dashboard_bookings");
-    }
-
-    @FXML
     private void btnSaveClicked() throws IOException {
         String number = txtNumber.getText();
         Double price = Double.valueOf(txtPrice.getText());

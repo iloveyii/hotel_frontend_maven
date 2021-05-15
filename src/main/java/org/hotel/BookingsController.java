@@ -1,16 +1,13 @@
 package org.hotel;
 
-import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 import org.hotel.models.*;
 
 import java.io.IOException;
@@ -60,28 +57,6 @@ public class BookingsController extends Controller implements Initializable {
     private TextField txtCustomerEmail;
     @FXML
     private TextField txtDatetime;
-    
-
-    @FXML
-    private void switchToPrimary() throws IOException {
-        App.setRoot("primary");
-    }
-    @FXML
-    private void switchToDashboardBookings() throws IOException {
-        App.setRoot("dashboard_bookings");
-    }
-    @FXML
-    private void switchToDashboardCustomers() throws IOException {
-        App.setRoot("dashboard_customers");
-    }
-    @FXML
-    private void switchToDashboardRooms() throws IOException {
-        App.setRoot("dashboard_rooms");
-    }
-    @FXML
-    private void switchToDashboardUsers() throws IOException {
-        App.setRoot("dashboard_users");
-    }
 
     @FXML
     private void btnSaveClicked() throws IOException {
