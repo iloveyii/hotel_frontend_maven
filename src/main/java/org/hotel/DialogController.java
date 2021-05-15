@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -16,6 +17,7 @@ import org.hotel.models.Room;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class DialogController extends Controller implements Initializable  {
@@ -37,6 +39,8 @@ public class DialogController extends Controller implements Initializable  {
     private Label lblRoomNumber;
     @FXML
     private Label lblPrice;
+    @FXML
+    private DatePicker calBookingDate;
 
     @FXML
     private void btnSaveClicked() throws IOException {
@@ -44,6 +48,8 @@ public class DialogController extends Controller implements Initializable  {
         String name = txtName.getText();
         String phone = txtPhone.getText();
         String email = txtEmail.getText();
+        LocalDate datetime = calBookingDate.getValue();
+
         if(DataHolder.getInstance().getData().currentRoom == null) {
             System.out.println("Please select a room first");
             lblError.setText("Please select a room  first");
@@ -51,13 +57,13 @@ public class DialogController extends Controller implements Initializable  {
         }
         String room_number = DataHolder.getInstance().getData().currentRoom.getNumber();
         Double price = DataHolder.getInstance().getData().currentRoom.getPrice();
-        if(! Helper.isEmailValid(email) || name.length() == 0 || phone.length() == 0 || email.length() == 0) {
+        if(! Helper.isEmailValid(email) || name.length() == 0 || phone.length() == 0 || email.length() == 0 || datetime == null) {
             System.out.println("Either email is invalid or name or phone is empty.");
-            lblError.setText("Either email is invalid or name or phone is empty.");
+            lblError.setText("Either email is invalid or name/phone/booking date is empty.");
             return;
         }
         lblError.setText("");
-        System.out.printf("Creating Booking:: room:%s, price:%.2f, name:%s, phone:%s, email:%s", room_number, price, name, phone, email);
+        System.out.printf("Creating Booking:: room:%s, price:%.2f, name:%s, phone:%s, email:%s, datetime:%s", room_number, price, name, phone, email, datetime.toString());
     }
 
     @FXML
