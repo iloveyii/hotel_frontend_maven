@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -9,35 +10,73 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.DialogController">
    <children>
-      <HBox prefHeight="50.0" prefWidth="200.0">
+      <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <TextField maxWidth="-Infinity" prefHeight="50.0" prefWidth="700.0" promptText="Name">
+            <HBox prefHeight="50.0" prefWidth="250.0">
+               <children>
+                  <Label text="Room Number:" textFill="#7749da">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblRoomNumber" prefWidth="100.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Label text="Price:" textFill="#7749da">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblPrice" prefWidth="100.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
                <HBox.margin>
-                  <Insets />
-               </HBox.margin></TextField>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </HBox>
          </children>
          <VBox.margin>
-            <Insets bottom="10.0" />
+            <Insets bottom="30.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="80.0" prefWidth="200.0">
+         <children>
+            <TextField fx:id="txtName" maxWidth="-Infinity" minHeight="40.0" prefHeight="80.0" prefWidth="700.0" promptText="Name">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font></TextField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" />
          </VBox.margin>
       </HBox>
       <HBox prefHeight="50.0" prefWidth="200.0">
          <children>
-            <TextField maxWidth="-Infinity" prefHeight="50.0" prefWidth="700.0" promptText="Phone">
+            <TextField fx:id="txtPhone" maxWidth="-Infinity" minHeight="40.0" prefHeight="50.0" prefWidth="700.0" promptText="Phone">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
-            </TextField>
-         </children>
-         <VBox.margin>
-            <Insets bottom="10.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox prefHeight="50.0" prefWidth="200.0">
-         <children>
-            <TextField maxWidth="-Infinity" prefHeight="50.0" prefWidth="700.0" promptText="Email">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </TextField>
          </children>
          <VBox.margin>
@@ -46,12 +85,36 @@
       </HBox>
       <HBox prefHeight="50.0" prefWidth="200.0">
          <children>
-            <JFXButton onAction="#btnSaveClicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray;" text="Save">
+            <TextField fx:id="txtEmail" maxWidth="-Infinity" minHeight="40.0" prefHeight="50.0" prefWidth="700.0" promptText="Email">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="lblError" textFill="#dd2121">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0">
+         <children>
+            <JFXButton onAction="#btnSaveClicked" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: gray;" text="Save">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnCancel" onAction="#btnCancelClicked" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: gray;" text="Cancel">
+            <JFXButton fx:id="btnCancel" onAction="#btnCancelClicked" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: gray;" text="Cancel">
                <font>
                   <Font size="15.0" />
                </font>
@@ -61,11 +124,11 @@
             </JFXButton>
          </children>
          <VBox.margin>
-            <Insets top="100.0" />
+            <Insets top="40.0" />
          </VBox.margin>
       </HBox>
    </children>
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      <Insets bottom="20.0" left="30.0" right="30.0" top="30.0" />
    </padding>
 </VBox>

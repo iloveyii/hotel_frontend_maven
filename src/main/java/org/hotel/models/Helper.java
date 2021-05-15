@@ -9,6 +9,9 @@ import javafx.util.Duration;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Helper {
 
     public static JSONObject toJsonObject(String json) {
@@ -56,5 +59,13 @@ public class Helper {
                 mnuHide.setVisible(false);
             });
         });
+    }
+
+    public static boolean isEmailValid(String email) {
+        String regex = "^(.+)@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        boolean valid = matcher.matches() ? true :false;
+        return valid;
     }
 }

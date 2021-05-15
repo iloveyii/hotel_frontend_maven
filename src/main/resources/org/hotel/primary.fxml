@@ -46,7 +46,7 @@
             <Font size="15.0" />
          </font>
       </PasswordField>
-      <Button fx:id="primaryButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#btnLoginClick" prefHeight="48.0" prefWidth="135.0" text="Login">
+      <Button fx:id="primaryButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#btnLoginClick" prefHeight="43.0" prefWidth="135.0" text="Login">
          <font>
             <Font size="16.0" />
          </font></Button>

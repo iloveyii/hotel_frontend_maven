@@ -22,7 +22,7 @@ public class LoginController extends Controller {
         String email = txtEmail.getText();
         String password = txtPassword.getText();
 
-        if(isEmailValid(email) && password.length() > 0) {
+        if(Helper.isEmailValid(email) && password.length() > 0) {
             lblError.setText("");
             User user  =  new User(0, email, password);
             String response = Api.postApiData("logins", user.toJson());
@@ -40,12 +40,6 @@ public class LoginController extends Controller {
         }
     }
 
-    private boolean isEmailValid(String email) {
-        String regex = "^(.+)@(.+)$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
-        boolean valid = matcher.matches() ? true :false;
-        return valid;
-    }
+
 
 }
