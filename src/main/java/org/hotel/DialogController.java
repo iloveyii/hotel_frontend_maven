@@ -10,14 +10,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.hotel.models.Controller;
-import org.hotel.models.DataHolder;
-import org.hotel.models.Helper;
-import org.hotel.models.Room;
+import org.hotel.models.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class DialogController extends Controller implements Initializable  {
@@ -64,11 +62,19 @@ public class DialogController extends Controller implements Initializable  {
         }
         lblError.setText("");
         System.out.printf("Creating Booking:: room:%s, price:%.2f, name:%s, phone:%s, email:%s, datetime:%s", room_number, price, name, phone, email, datetime.toString());
+        Booking b = new Booking(0, room_number, price, name, phone, email, datetime.toString());
+        String response = Api.postApiData("bookings", b.toJson());
+        if(Helper.isStatusTrue(response)) {
+            lblError.setText("Saved successfully.");
+            lblError.setStyle("-fx-background-color: green");
+            clearForm();
+        }
     }
 
     @FXML
     private void btnCancelClicked() throws IOException {
         System.out.println("Closing dialog");
+        clearForm();
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
@@ -77,10 +83,21 @@ public class DialogController extends Controller implements Initializable  {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Room r = DataHolder.getInstance().getData().currentRoom;
 
-        if(r != null) {
-            System.out.println("Please select a room first");
+        if(r == null) {
+            lblError.setText("Please select a room first");
+        } else {
+            if(r.getBooked().toLowerCase().equals("yes")) {
+                lblError.setText("This room is already booked, un-book it first.");
+            }
             lblRoomNumber.setText(r.getNumber());
             lblPrice.setText(String.valueOf(r.getPrice()));
         }
+    }
+
+    private void clearForm() {
+        txtName.setText("");
+        txtPhone.setText("");
+        txtEmail.setText("");
+        calBookingDate.setValue(null);
     }
 }

@@ -7,21 +7,23 @@ public class Booking {
     private int id;
     private String room_number;
     private double price;
-    private String customer_name;
-    private String customer_email;
+    private String name;
+    private String phone;
+    private String email;
     private String datetime;
 
-    public Booking(int id, String room_number, double price, String customer_name, String customer_email, String datetime) {
+    public Booking(int id, String room_number, double price, String name, String phone, String email, String datetime) {
         this.id = id;
         this.room_number = room_number;
         this.price = price;
-        this.customer_name = customer_name;
-        this.customer_email = customer_email;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
         this.datetime = datetime;
     }
 
     public String toString() {
-        return String.format("%d, %s, %.2f, %s, %s, %s", id, room_number, price, customer_name, customer_email, datetime);
+        return String.format("%d, %s, %.2f, %s, %s, %s, %s", id, room_number, price, name, phone, email, datetime);
     }
 
      public JSONObject toJson() {
@@ -29,8 +31,8 @@ public class Booking {
         if(id != 0) {
             booking.put("id", id);
         }
-        booking.put("room_number", room_number); booking.put("price", price); booking.put("customer_name", customer_name);
-        booking.put("customer_email", customer_email); booking.put("datetime", datetime);
+        booking.put("room_number", room_number); booking.put("price", price); booking.put("name", name);
+         booking.put("phone", phone); booking.put("email", email); booking.put("datetime", datetime);
         return booking;
     }
 
@@ -46,15 +48,19 @@ public class Booking {
         return price;
     }
 
-    public String getCustomer_name() {
-        return customer_name;
+    public String getName() {
+        return name;
     }
 
-    public String getCustomer_email() {
-        return customer_email;
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getDatetime() {
-        return datetime;
+        return datetime.substring(0, 10);
     }
 }

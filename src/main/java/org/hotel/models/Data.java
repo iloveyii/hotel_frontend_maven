@@ -46,12 +46,11 @@ public class Data {
     }
 
     public void loadBookingsData() {
-        Booking b1 = new Booking(1, "0111", 3201.5, "Ali1", "ali1@email.com", "2021-05-11");
-        Booking b2 = new Booking(2, "0211", 3202.5, "Ali2", "ali2@email.com", "2021-05-12");
-        Booking b3 = new Booking(3, "0311", 3203.5, "Ali3", "ali3@email.com", "2021-05-13");
-        bookings.add(b1);
-        bookings.add(b2);
-        bookings.add(b3);
+        String bookingsString = Api.getApiData("bookings");
+        if(bookingsString.length() > 0) {
+            bookings.clear();
+            addToBookings(bookingsString);
+        }
     }
 
     public void loadRoomsData() {
@@ -91,6 +90,31 @@ public class Data {
             str += String.format("%d, %s, %s \n", c.getId(), c.getPhone(), c.getEmail());
         }
         return  str;
+    }
+
+    private void addToBookings(String responseString) {
+        JSONObject response = new JSONObject(responseString);
+        boolean success = (boolean) response.getBoolean("success");
+
+        if(success == true) {
+            JSONArray _bookings = new JSONArray(response.getJSONArray("data"));
+            int id; double price; String room_number, name, phone, email, datetime;
+            for(int i=0; i < _bookings.length(); i++) {
+                JSONObject booking = _bookings.getJSONObject(i);
+                id = (int) booking.getInt("id");
+                room_number = (String) booking.getString("room_number");
+                price = booking.getDouble("price");
+                name = (String) booking.getString("name");
+                phone = (String) booking.getString("phone");
+                email = (String) booking.getString("email");
+                datetime = (String) booking.getString("datetime");
+                Booking b = new Booking(id, room_number, price, name, phone, email, datetime);
+                System.out.println(b);
+                bookings.add(b);
+            }
+        } else {
+            System.out.println("Response status from endpoint /rooms is false");
+        }
     }
 
     private void addToRooms(String responseString) {

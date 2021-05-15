@@ -30,6 +30,8 @@ public class BookingsController extends Controller implements Initializable {
     @FXML
     private TableColumn<Booking, String> colCustomerName;
     @FXML
+    private TableColumn<Booking, String> colCustomerPhone;
+    @FXML
     private TableColumn<Booking, String> colCustomerEmail;
     @FXML
     private TableColumn<Booking, String> colDatetime;
@@ -52,6 +54,8 @@ public class BookingsController extends Controller implements Initializable {
     private TextField txtPrice;
     @FXML
     private TextField txtCustomerName;
+    @FXML
+    private TextField txtCustomerPhone;
     @FXML
     private TextField txtCustomerEmail;
     @FXML
@@ -85,9 +89,10 @@ public class BookingsController extends Controller implements Initializable {
         Double price = Double.valueOf(txtPrice.getText());
         String customer_name = txtCustomerName.getText();
         String customer_email = txtCustomerEmail.getText();
+        String customer_phone = txtCustomerPhone.getText();
         String datetime = txtDatetime.getText();
         int id = DataHolder.getInstance().getData().currentBooking == null ? 0 : DataHolder.getInstance().getData().currentBooking.getId();
-        Booking b = new Booking(id, room_number, price, customer_name, customer_email, datetime);
+        Booking b = new Booking(id, room_number, price, customer_name, customer_phone, customer_email, datetime);
 
         System.out.print("Saving booking :::");
         System.out.println(b);
@@ -120,6 +125,7 @@ public class BookingsController extends Controller implements Initializable {
         txtRoomNumber.setText("");
         txtPrice.setText("");
         txtCustomerName.setText("");
+        txtCustomerPhone.setText("");
         txtCustomerEmail.setText("");
         txtDatetime.setText("");
     }
@@ -145,8 +151,9 @@ public class BookingsController extends Controller implements Initializable {
         colId.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("id"));
         colRoomNumber.setCellValueFactory(new PropertyValueFactory<Booking, String>("room_number"));
         colPrice.setCellValueFactory(new PropertyValueFactory<Booking, Double>("price"));
-        colCustomerName.setCellValueFactory(new PropertyValueFactory<Booking, String>("customer_name"));
-        colCustomerEmail.setCellValueFactory(new PropertyValueFactory<Booking, String>("customer_email"));
+        colCustomerName.setCellValueFactory(new PropertyValueFactory<Booking, String>("name"));
+        colCustomerEmail.setCellValueFactory(new PropertyValueFactory<Booking, String>("email"));
+        colCustomerPhone.setCellValueFactory(new PropertyValueFactory<Booking, String>("phone"));
         colDatetime.setCellValueFactory(new PropertyValueFactory<Booking, String>("datetime"));
 
         for(int i=0; i < data.bookings.size(); i++) {
@@ -166,8 +173,9 @@ public class BookingsController extends Controller implements Initializable {
                     DataHolder.getInstance().getData().currentBooking = rowData;
                     txtRoomNumber.setText(rowData.getRoom_number());
                     txtPrice.setText(String.valueOf(rowData.getPrice()));
-                    txtCustomerName.setText(rowData.getCustomer_name());
-                    txtCustomerEmail.setText(rowData.getCustomer_email());
+                    txtCustomerName.setText(rowData.getName());
+                    txtCustomerPhone.setText(rowData.getPhone());
+                    txtCustomerEmail.setText(rowData.getEmail());
                     txtDatetime.setText(rowData.getDatetime());
                 }
             });
