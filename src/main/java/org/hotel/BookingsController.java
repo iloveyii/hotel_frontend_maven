@@ -70,7 +70,6 @@ public class BookingsController extends Controller implements Initializable {
         Booking b = new Booking(id, room_number, price, customer_name, customer_phone, customer_email, datetime);
 
         System.out.print("Saving booking :::");
-        System.out.println(b);
         System.out.println(b.toJson());
 
         if( Helper.isStatusTrue(Api.postApiData("bookings", b.toJson())) ){

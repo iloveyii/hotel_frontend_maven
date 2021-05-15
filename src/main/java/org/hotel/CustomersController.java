@@ -74,9 +74,7 @@ public class CustomersController extends Controller implements Initializable {
         int id = DataHolder.getInstance().getData().currentCustomer == null ? 0 : DataHolder.getInstance().getData().currentCustomer.getId();
         Customer c = new Customer(id, name, phone, email);
         System.out.print("Saving customer :::");
-        System.out.println(c);
         System.out.println(c.toJson());
-        System.out.println(c);
         if( Helper.isStatusTrue(Api.postApiData("customers", c.toJson())) ){
             clearCustomerForm();
             DataHolder.getInstance().getData().loadCustomersData();
@@ -108,7 +106,6 @@ public class CustomersController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // showTable(); // @TODO uncomment
         setTableCustomersRowClickListener();
         showTableCustomers();
 
@@ -119,50 +116,7 @@ public class CustomersController extends Controller implements Initializable {
     }
 
     private void setSliding() {
-        mnuShow.setVisible(false);
-        sdrLeft.setTranslateX(0);
-        mnuShow.setOnMouseClicked(event -> {
-            TranslateTransition slide = new TranslateTransition(); TranslateTransition slideAnchor = new TranslateTransition();
-            slide.setDuration(Duration.seconds(0.4)); slideAnchor.setDuration(Duration.seconds(0.4));
-            slide.setNode(sdrLeft); slideAnchor.setNode(acrTable);
-            slide.setToX(0); slideAnchor.setToX(0);
-            slide.play(); slideAnchor.play();
-            sdrLeft.setTranslateX(-400); acrTable.setTranslateX(400); acrTable.setMinWidth(691); tableCustomers.setPrefWidth(600);
-
-            slide.setOnFinished((ActionEvent e)-> {
-                mnuShow.setVisible(false);
-                mnuHide.setVisible(true);
-            });
-        });
-
-        mnuHide.setOnMouseClicked(event -> {
-            TranslateTransition slide = new TranslateTransition();  TranslateTransition slideAnchor = new TranslateTransition();
-            slide.setDuration(Duration.seconds(0.4)); slideAnchor.setDuration(Duration.seconds(0.4));
-            slide.setNode(sdrLeft); slideAnchor.setNode(acrTable);
-            slide.setToX(-400);  slideAnchor.setToX(-400);
-            slide.play(); slideAnchor.play();
-            sdrLeft.setTranslateX(0); acrTable.setTranslateX(-400); acrTable.setMinWidth(1195); tableCustomers.setPrefWidth(800);
-
-            slide.setOnFinished((ActionEvent e)-> {
-                mnuShow.setVisible(true);
-                mnuHide.setVisible(false);
-            });
-        });
-    }
-
-    private void showTableRooms() {
-        System.out.println("RoomsController showTable");
-        ObservableList<Room> rooms = FXCollections.observableArrayList();
-        colId.setCellValueFactory(new PropertyValueFactory<Room, Integer>("id"));
-        colNumber.setCellValueFactory(new PropertyValueFactory<Room, String>("number"));
-        colPrice.setCellValueFactory(new PropertyValueFactory<Room, Double>("price"));
-        colBooked.setCellValueFactory(new PropertyValueFactory<Room, String>("booked"));
-
-        for(int i=0; i < data.rooms.size(); i++) {
-            System.out.println("Rooms:::" + data.rooms.get(i));
-            rooms.add(data.rooms.get(i));
-        }
-        tableRooms.setItems(rooms);
+        Helper.setSliding(mnuShow, mnuHide, sdrLeft, acrTable, tableCustomers);
     }
 
     private void showTableCustomers() {

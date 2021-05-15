@@ -57,10 +57,8 @@ public class UsersController extends Controller implements Initializable {
         String password = txtPassword.getText();
         int id = DataHolder.getInstance().getData().currentUser == null ? 0 : DataHolder.getInstance().getData().currentUser.getId();
         User c = new User(id, name, email, password);
-        System.out.print("Saving customer :::");
-        System.out.println(c);
+        System.out.print("Saving user :::");
         System.out.println(c.toJson());
-        System.out.println(c);
         if( Helper.isStatusTrue(Api.postApiData("users", c.toJson())) ){
             clearUserForm();
             DataHolder.getInstance().getData().loadUsersData();
@@ -102,35 +100,7 @@ public class UsersController extends Controller implements Initializable {
     }
 
     private void setSliding() {
-        mnuShow.setVisible(false);
-        sdrLeft.setTranslateX(0);
-        mnuShow.setOnMouseClicked(event -> {
-            TranslateTransition slide = new TranslateTransition(); TranslateTransition slideAnchor = new TranslateTransition();
-            slide.setDuration(Duration.seconds(0.4)); slideAnchor.setDuration(Duration.seconds(0.4));
-            slide.setNode(sdrLeft); slideAnchor.setNode(acrTable);
-            slide.setToX(0); slideAnchor.setToX(0);
-            slide.play(); slideAnchor.play();
-            sdrLeft.setTranslateX(-400); acrTable.setTranslateX(400); acrTable.setMinWidth(691); tableUsers.setPrefWidth(600);
-
-            slide.setOnFinished((ActionEvent e)-> {
-                mnuShow.setVisible(false);
-                mnuHide.setVisible(true);
-            });
-        });
-
-        mnuHide.setOnMouseClicked(event -> {
-            TranslateTransition slide = new TranslateTransition();  TranslateTransition slideAnchor = new TranslateTransition();
-            slide.setDuration(Duration.seconds(0.4)); slideAnchor.setDuration(Duration.seconds(0.4));
-            slide.setNode(sdrLeft); slideAnchor.setNode(acrTable);
-            slide.setToX(-400);  slideAnchor.setToX(-400);
-            slide.play(); slideAnchor.play();
-            sdrLeft.setTranslateX(0); acrTable.setTranslateX(-400); acrTable.setMinWidth(1195); tableUsers.setPrefWidth(800);
-
-            slide.setOnFinished((ActionEvent e)-> {
-                mnuShow.setVisible(true);
-                mnuHide.setVisible(false);
-            });
-        });
+        Helper.setSliding(mnuShow, mnuHide, sdrLeft, acrTable, tableUsers);
     }
 
     private void showTableUsers() {

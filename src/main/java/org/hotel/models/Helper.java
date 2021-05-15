@@ -9,6 +9,7 @@ import javafx.util.Duration;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,7 +30,7 @@ public class Helper {
         return  (boolean)respJson.get("status");
     }
 
-    public static void setSliding(Label mnuShow, Label mnuHide, AnchorPane sdrLeft, AnchorPane acrTable, TableView<Booking> tableBookings) {
+    public static <T> void setSliding(Label mnuShow, Label mnuHide, AnchorPane sdrLeft, AnchorPane acrTable, TableView<T> tableBookings) {
         mnuShow.setVisible(false);
         sdrLeft.setTranslateX(0);
         mnuShow.setOnMouseClicked(event -> {
