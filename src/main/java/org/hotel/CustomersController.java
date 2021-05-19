@@ -2,11 +2,16 @@ package org.hotel;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -64,10 +69,15 @@ public class CustomersController extends Controller implements Initializable {
     private TextField txtPhone;
     @FXML
     private TextField txtEmail;
+    @FXML
+    private TextField txtSearch;
+    @FXML
+    private Label lblError;
 
+    ObservableList<Customer> customers = FXCollections.observableArrayList();
 
     @FXML
-    private void btnSaveClicked() throws IOException {
+    private void btnSaveClicked() throws IOException, NoSuchFieldException, IllegalAccessException {
         String name = txtName.getText();
         String phone = txtPhone.getText();
         String email = txtEmail.getText();
@@ -75,10 +85,15 @@ public class CustomersController extends Controller implements Initializable {
         Customer c = new Customer(id, name, phone, email);
         System.out.print("Saving customer :::");
         System.out.println(c.toJson());
-        if( Helper.isStatusTrue(Api.postApiData("customers", c.toJson())) ){
-            clearCustomerForm();
-            DataHolder.getInstance().getData().loadCustomersData();
-            showTableCustomers();
+        c.validate();
+        if(c.hasErrors()) {
+            lblError.setText(c.getStringErrors());
+        } else {
+            if( Helper.isStatusTrue(Api.postApiData("customers", c.toJson())) ){
+                clearCustomerForm();
+                DataHolder.getInstance().getData().loadCustomersData();
+                showTableCustomers();
+            }
         }
     }
 
@@ -113,6 +128,31 @@ public class CustomersController extends Controller implements Initializable {
             System.exit(0);
         });
         setSliding();
+        setFiltering();
+    }
+
+    public void setFiltering() {
+        // 1 :- Observable list to filteredList 
+        FilteredList<Customer> filteredList = new FilteredList<>(customers, c -> true);
+        // 2 :- Set filter predicate whenever the filter changes
+        txtSearch.textProperty().addListener((observable, oldValue, newValue)->{
+            filteredList.setPredicate(customer -> {
+                // Empty display all
+                if(newValue == null || newValue.isEmpty()) {
+                    return true;
+                } else if (customer.getName().toLowerCase().contains(newValue.toLowerCase())) {
+                    return true;
+                } else if(customer.getEmail().toLowerCase().contains(newValue.toLowerCase())) {
+                    return true;
+                } else if(customer.getPhone().contains(newValue)){
+                    return true;
+                }
+                return false;
+            });
+            SortedList<Customer> sortedList = new SortedList<>(filteredList);
+            sortedList.comparatorProperty().setValue(tableCustomers.getComparator());
+            tableCustomers.setItems(sortedList);
+        });
     }
 
     private void setSliding() {
@@ -121,7 +161,6 @@ public class CustomersController extends Controller implements Initializable {
 
     private void showTableCustomers() {
         System.out.println("RoomsController showTable Customers");
-        ObservableList<Customer> customers = FXCollections.observableArrayList();
         colIdCustomers.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("id"));
         colNameCustomers.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
         colPhoneCustomers.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));

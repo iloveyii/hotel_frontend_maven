@@ -15,6 +15,8 @@ import org.hotel.models.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class UsersController extends Controller implements Initializable {
@@ -48,21 +50,27 @@ public class UsersController extends Controller implements Initializable {
     private TextField txtPassword;
     @FXML
     private TextField txtName;
+    @FXML
+    private Label lblError;
     
 
     @FXML
-    private void btnSaveClicked() throws IOException {
+    private void btnSaveClicked() throws IOException, NoSuchFieldException, IllegalAccessException {
         String name = txtName.getText();
         String email = txtEmail.getText();
         String password = txtPassword.getText();
         int id = DataHolder.getInstance().getData().currentUser == null ? 0 : DataHolder.getInstance().getData().currentUser.getId();
-        User c = new User(id, name, email, password);
-        System.out.print("Saving user :::");
-        System.out.println(c.toJson());
-        if( Helper.isStatusTrue(Api.postApiData("users", c.toJson())) ){
-            clearUserForm();
-            DataHolder.getInstance().getData().loadUsersData();
-            showTableUsers();
+        User u = new User(id, name, email, password);
+        u.validate();
+        if(u.hasErrors()) {
+            lblError.setText(u.getStringErrors());
+        } else {
+            System.out.println("User has no errors");
+            if( Helper.isStatusTrue(Api.postApiData("users", u.toJson())) ){
+                clearUserForm();
+                DataHolder.getInstance().getData().loadUsersData();
+                showTableUsers();
+            }
         }
     }
 

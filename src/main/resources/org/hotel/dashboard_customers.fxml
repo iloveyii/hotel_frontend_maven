@@ -203,6 +203,14 @@
                               <Insets top="40.0" />
                            </VBox.margin>
                         </HBox>
+                        <Label id="lblError" fx:id="lblError" prefHeight="158.0" prefWidth="370.0" textFill="#d02323">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
                      </children>
                      <padding>
                         <Insets left="20.0" right="20.0" />
@@ -218,7 +226,7 @@
                <children>
                   <HBox layoutY="-23.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0">
                      <children>
-                        <TextField prefHeight="43.0" prefWidth="500.0" promptText="Search">
+                        <TextField fx:id="txtSearch" prefHeight="43.0" prefWidth="500.0" promptText="Search">
                            <font>
                               <Font size="15.0" />
                            </font>
