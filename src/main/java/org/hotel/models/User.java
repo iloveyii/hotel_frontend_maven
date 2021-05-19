@@ -49,6 +49,6 @@ public class User extends Model {
         r.put("name", "string|required");
         r.put("email", "email|required");
         r.put("password", "required|min:3|max:20");
-        return null;
+        return r;
     }
 }

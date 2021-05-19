@@ -2,7 +2,9 @@ package org.hotel.models;
 
 import org.json.JSONObject;
 
-public class Customer {
+import java.util.HashMap;
+
+public class Customer extends Model {
 
     private int id;
     private String name;
@@ -43,5 +45,14 @@ public class Customer {
 
     public String getPhone() {
         return phone;
+    }
+
+    @Override
+    public HashMap<String, String> rules() {
+        HashMap<String, String> c = new HashMap<String, String>();
+        c.put("name", "string|required");
+        c.put("email", "email|required");
+        c.put("phone", "required|min:3|max:20");
+        return c;
     }
 }

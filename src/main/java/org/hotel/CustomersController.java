@@ -71,11 +71,13 @@ public class CustomersController extends Controller implements Initializable {
     private TextField txtEmail;
     @FXML
     private TextField txtSearch;
+    @FXML
+    private Label lblError;
 
     ObservableList<Customer> customers = FXCollections.observableArrayList();
 
     @FXML
-    private void btnSaveClicked() throws IOException {
+    private void btnSaveClicked() throws IOException, NoSuchFieldException, IllegalAccessException {
         String name = txtName.getText();
         String phone = txtPhone.getText();
         String email = txtEmail.getText();
@@ -83,10 +85,15 @@ public class CustomersController extends Controller implements Initializable {
         Customer c = new Customer(id, name, phone, email);
         System.out.print("Saving customer :::");
         System.out.println(c.toJson());
-        if( Helper.isStatusTrue(Api.postApiData("customers", c.toJson())) ){
-            clearCustomerForm();
-            DataHolder.getInstance().getData().loadCustomersData();
-            showTableCustomers();
+        c.validate();
+        if(c.hasErrors()) {
+            lblError.setText(c.getStringErrors());
+        } else {
+            if( Helper.isStatusTrue(Api.postApiData("customers", c.toJson())) ){
+                clearCustomerForm();
+                DataHolder.getInstance().getData().loadCustomersData();
+                showTableCustomers();
+            }
         }
     }
 

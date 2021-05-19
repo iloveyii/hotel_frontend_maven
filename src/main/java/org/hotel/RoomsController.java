@@ -48,13 +48,15 @@ public class RoomsController extends Controller implements Initializable {
     private AnchorPane acrTable;
     @FXML
     private JFXButton btnBook;
-    // Customer Form
+    // Room Form
     @FXML
     private TextField txtNumber;
     @FXML
     private TextField txtPrice;
     @FXML
     private TextField txtBooked;
+    @FXML
+    private Label lblError;
 
     @FXML
     private void btnBookClicked() throws IOException {
@@ -67,19 +69,27 @@ public class RoomsController extends Controller implements Initializable {
     }
 
     @FXML
-    private void btnSaveClicked() throws IOException {
+    private void btnSaveClicked() throws IOException, NoSuchFieldException, IllegalAccessException {
         String number = txtNumber.getText();
+        if(txtPrice.getText().length() == 0 || txtPrice.getText().matches("^[0-9.]+$") == false) {
+            lblError.setText("PRICE: Either empty or non-numeric");
+            return;
+        }
         Double price = Double.valueOf(txtPrice.getText());
         String booked = txtBooked.getText();
         int id = DataHolder.getInstance().getData().currentRoom == null ? 0 : DataHolder.getInstance().getData().currentRoom.getId();
-        Room c = new Room(id, number, price, booked);
+        Room r = new Room(id, number, price, booked);
         System.out.print("Saving room :::");
-        System.out.println(c.toJson());
-
-        if( Helper.isStatusTrue(Api.postApiData("rooms", c.toJson())) ){
-            clearRoomForm();
-            DataHolder.getInstance().getData().loadRoomsData();
-            showTableRooms();
+        System.out.println(r.toJson());
+        r.validate();
+        if(r.hasErrors()){
+            lblError.setText(r.getStringErrors());
+        } else {
+            if( Helper.isStatusTrue(Api.postApiData("rooms", r.toJson())) ){
+                clearRoomForm();
+                DataHolder.getInstance().getData().loadRoomsData();
+                showTableRooms();
+            }
         }
     }
 
@@ -103,6 +113,7 @@ public class RoomsController extends Controller implements Initializable {
         txtNumber.setText("");
         txtPrice.setText("");
         txtBooked.setText("");
+        lblError.setText("");
     }
 
     @Override

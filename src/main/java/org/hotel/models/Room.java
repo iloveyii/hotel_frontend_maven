@@ -2,10 +2,11 @@ package org.hotel.models;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 
-public class Room {
+public class Room extends Model {
     private int id;
     private String number;
     private double price;
@@ -50,5 +51,14 @@ public class Room {
         }
         room.put("number", this.number); room.put("price", this.price); room.put("booked", this.booked);
         return room;
+    }
+
+    @Override
+    public HashMap<String, String> rules() {
+        HashMap<String, String> r = new HashMap<String, String>();
+        r.put("number", "string|required");
+        r.put("price", "number|required");
+        r.put("booked", "required|string|min:2|max:3");
+        return r;
     }
 }

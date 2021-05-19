@@ -25,6 +25,9 @@ In this repo we will explain how to setup simple/fxml (without/with fxml) JavaFx
     - Double Click archetypeArtifactId and change value to `javafx-archetype-simpe` OR  `javafx-archetype-fxml` (for fxml support) and click OK.
     - Click + button and type name: javafx-version and value: 15.0.1(or latest version) and click OK.
 - Click Next and Finish.
+## Verify
+- Simple: You can expand the External Libraries in the left pane of IntelliJ and notice that it has `javafx-base/controls/graphics` jar files downloaded.
+- Fxml: You can expand the External Libraries in the left pane of IntelliJ and notice that it has `javafx-base/controls/graphics/fxml` jar files downloaded.
 
 # Run configuration
 - In the toolbar click `Add configrations`
@@ -38,9 +41,6 @@ In this repo we will explain how to setup simple/fxml (without/with fxml) JavaFx
 # Distribution builds
 - [Build](https://github.com/dlemmermann/JPackageScriptFX)
 
-## Verify
-- Simple: You can expand the External Libraries in the left pane of IntelliJ and notice that it has `javafx-base/controls/graphics` jar files downloaded.
-- Fxml: You can expand the External Libraries in the left pane of IntelliJ and notice that it has `javafx-base/controls/graphics/fxml` jar files downloaded.
 
 # Latest
 - [DOCS](https://openjfx.io/openjfx-docs/), and in the left menu click `JavaFX and IntelliJ` > `Non-modular with Maven`
@@ -61,6 +61,7 @@ module org.hotel {
     exports org.hotel;
 }
 ```
+
 - WARNING: Illegal reflective access by com.google.inject.internal.cglib.core
 - Solution:
 ```bash
