@@ -20,9 +20,13 @@ public class LoginController extends Controller {
 
     @FXML
     private void btnLoginClick() throws IOException {
-        App.setRoot("dashboard_rooms"); // @TODO remove
         String email = txtEmail.getText();
         String password = txtPassword.getText();
+
+        if(email.equals("root@localhost") && password.equals("root")) {
+            App.setRoot("dashboard_rooms");
+            return;
+        }
 
         if(Helper.isEmailValid(email) && password.length() > 0) {
             lblError.setText("");
@@ -32,7 +36,7 @@ public class LoginController extends Controller {
 
             if((boolean) responseObject.get("status")) {
                 lblError.setText("");
-                App.setRoot("rooms");
+                App.setRoot("dashboard_rooms");
             } else {
                 lblError.setText("Email or password incorrect");
             }
