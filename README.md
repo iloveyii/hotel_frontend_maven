@@ -11,7 +11,7 @@ In this repo we will explain how to setup simple/fxml (without/with fxml) JavaFx
 - Either use command line `mvn clean javafx:run` or follow the section "Run configuration" below if you want to run from IntelliJ
 - The default root credentials are `email: root@localhost & password: root`, once logged in you can create more users.
 - This JavaFx application works with `hotel_backend` that you can clone `https://github.com/iloveyii/hotel_backend.git` and follow instructions in the README.md
-- If your server/backend_hotel is running on a system other localhost you need to change `url` in `models/Api.java` line 15.
+- If your server/backend_hotel is running on a system other than localhost you need to change `url` in `models/Api.java` line 15.
 
 ## Pre Requisite
 - You need to install Git, Maven, Docker, IntelliJ for your platform.
