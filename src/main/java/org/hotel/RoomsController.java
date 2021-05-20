@@ -1,10 +1,8 @@
 package org.hotel;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -15,8 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import org.hotel.models.*;
+import org.hotel.models.Api;
+import org.hotel.models.DataHolder;
+import org.hotel.models.Helper;
+import org.hotel.models.Room;
 
 import java.io.IOException;
 import java.net.URL;
@@ -66,6 +66,8 @@ public class RoomsController extends Controller implements Initializable {
         Scene scene = new Scene(root);
         dialog.setScene(scene);
         dialog.showAndWait();
+        showTableRooms();
+        clearRoomForm();
     }
 
     @FXML

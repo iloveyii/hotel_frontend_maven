@@ -33,6 +33,9 @@ public class User extends Model {
     public String getPassword() {
         return password;
     }
+    public String setPassword(String pass) {
+        return password = pass;
+    }
 
     public JSONObject toJson() {
         JSONObject user = new JSONObject();

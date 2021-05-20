@@ -44,6 +44,10 @@ public class Room extends Model {
         return booked;
     }
 
+    public String setBooked(String status) {
+        return booked = status;
+    }
+
     public JSONObject toJson() {
         JSONObject room = new JSONObject();
         if(id != 0) {

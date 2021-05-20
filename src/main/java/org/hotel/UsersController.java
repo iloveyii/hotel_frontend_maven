@@ -120,8 +120,10 @@ public class UsersController extends Controller implements Initializable {
         colPassword.setCellValueFactory(new PropertyValueFactory<User, String>("password"));
 
         for(int i=0; i < data.users.size(); i++) {
-            System.out.println("Users:::" + data.users.get(i));
-            users.add(data.users.get(i));
+            User u = data.users.get(i);
+            System.out.println("Users:::" + u);
+            u.setPassword("******");
+            users.add(u);
         }
         tableUsers.setItems(users);
     }

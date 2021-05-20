@@ -131,6 +131,10 @@ public class Data {
                 price = room.getDouble("price");
                 booked = (String) room.getString("booked");
                 Room r = new Room(id, number, price, booked);
+                // Refresh the current room also
+                if(currentRoom != null && (currentRoom.getId() == id)) {
+                    currentRoom = r;
+                }
                 System.out.println(r);
                 rooms.add(r);
             }

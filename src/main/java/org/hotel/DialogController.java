@@ -68,8 +68,15 @@ public class DialogController extends Controller implements Initializable  {
         if(Helper.isStatusTrue(response)) {
             lblError.setText("Saved successfully.");
             lblError.setStyle("-fx-background-color: green");
-            DataHolder.getInstance().getData().loadBookingsData();
             clearForm();
+            // Change room status booked: yes
+            DataHolder.getInstance().getData().currentRoom.setBooked("yes");
+            String roomBookedStatus = Api.postApiData("rooms", DataHolder.getInstance().getData().currentRoom.toJson());
+            if(Helper.isStatusTrue(roomBookedStatus)) {
+                System.out.println("Room status changed to booked:yes");
+                DataHolder.getInstance().getData().loadRoomsData();
+            }
+            DataHolder.getInstance().getData().loadBookingsData();
         }
     }
 
