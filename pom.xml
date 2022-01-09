@@ -39,6 +39,18 @@
             <version>9.0.1</version>
         </dependency>
 
+        <!-- PDF -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>3.0.0-alpha2</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
