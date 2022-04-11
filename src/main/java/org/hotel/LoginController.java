@@ -32,6 +32,10 @@ public class LoginController extends Controller {
         System.exit(0);
     }
 
+    private void addToSystemTray() {
+
+    }
+
     private void printIt() throws PrintException {
         String cmd = "Print something";
         System.out.println("Printing...");
@@ -115,8 +119,8 @@ public class LoginController extends Controller {
         Stream.of("header 1", "header 2", "header 3")
                 .forEach(columnTitle -> {
                     PdfPCell header = new PdfPCell();
-                    header.setBackgroundColor(BaseColor.LIGHT_GRAY);
-                    header.setBorderWidth(2);
+                    header.setBackgroundColor(BaseColor.YELLOW);
+                    header.setBorderWidth(1);
                     header.setPhrase(new Phrase(columnTitle));
                     table.addCell(header);
                 });

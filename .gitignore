@@ -3,3 +3,4 @@ target
 out
 **/META-INF/
 **/*.class
+bin/

@@ -10,7 +10,10 @@ import javafx.stage.Stage;
 import org.hotel.models.Data;
 import org.hotel.models.DataHolder;
 import javafx.stage.StageStyle;
+import com.dustinredmond.fxtrayicon.FXTrayIcon;
 
+
+import java.awt.SystemTray;
 import java.io.IOException;
 
 /**
@@ -24,10 +27,24 @@ public class App extends Application {
     public static double x,y = 0;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, Exception {
         scene = new Scene(loadFXML("primary"), 640, 480);
         primaryStage = stage;
         primaryStage.initStyle(StageStyle.UNDECORATED);
+
+        // Minimize to system tray
+        /* FXTrayIcon trayIcon = new FXTrayIcon(stage, getClass().getResource("favicon.png").openConnection().getURL());
+        trayIcon.show(); */
+        if(SystemTray.isSupported() == true) {
+            System.out.println("System tray is supported");
+        } else {
+            System.out.println("System tray is not supported");
+        }
+
+        final SystemTray systemTray = SystemTray.getSystemTray();
+
+
+
         stage.setScene(scene);
         stage.show();
     }

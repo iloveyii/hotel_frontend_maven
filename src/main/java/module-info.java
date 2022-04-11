@@ -6,6 +6,8 @@ module org.hotel {
     requires com.jfoenix;
     requires itextpdf;
     requires java.desktop;
+    requires FXTrayIcon;
+    requires SystemTray;
     opens org.hotel to javafx.fxml;
     opens org.hotel.models to javafx.base;
     exports org.hotel;
